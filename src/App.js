@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Posts from './containers/Posts';
 import styled from 'styled-components';
 import PostForm from './containers/PostForm';
+import Menus from './containers/Menus';
 import './App.css';
 
 const Container = styled.div`
@@ -14,18 +14,36 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Liberty template</h1>
+
+          <img src="https://www.liberty.cl/imagenes/logo.png" className="Liberty-logo" alt="logo" />
+          <h1 className="App-title">Liberty APP</h1>
+
+
+          
         </header>
+        <div class="menu">
+          <ul class="contMenuPrincipal">
+            <li class="liMenuPrincipal"><a href="#home" class="active">Home</a></li>
+            <li class="liMenuPrincipal"><a href="#news">News</a></li>
+            <li class="liMenuPrincipal"><a href="#contact">Contact</a></li>
+            <li class="liMenuPrincipal"><Menus></Menus></li>
+            <li class="liMenuPrincipal"><a href="#about">About</a></li>
+            <li class="liMenuPrincipal"><a href="#about">Menu Multi APP</a></li>
+            <li class="liMenuPrincipal"><Menus></Menus></li>
+          </ul>
+        </div>
+
+
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          Applicaciones:
         </p>
+
         <Container>
-          <h2>Create post: </h2>
-          <PostForm />
-          <h1>React blog</h1>
-          <h2>Posts: </h2>
+        
+          <h1>Listado de Mensajes</h1>
+          <h2>Mensajes:</h2>
           <Posts />
+          <PostForm />
         </Container>
       </div>
 
