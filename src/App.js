@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Posts from './containers/Posts';
 import styled from 'styled-components';
 import PostForm from './containers/PostForm';
+import FormAgregarCorredor from './containers/FormAgregarCorredor';
 import Menus from './containers/Menus';
+import DataGrid from './containers/DataGrid';
 import './App.css';
 
 const Container = styled.div`
@@ -37,7 +39,7 @@ class App extends Component {
         <p className="App-intro">
           Applicaciones:
         </p>
-
+        <FormAgregarCorredor></FormAgregarCorredor>
         <Container>
         
           <h1>Listado de Mensajes</h1>
@@ -45,6 +47,7 @@ class App extends Component {
           <Posts />
           <PostForm />
         </Container>
+        <DataGrid/>
       </div>
 
     );
