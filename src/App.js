@@ -23,15 +23,15 @@ class App extends Component {
 
           
         </header>
-        <div class="menu">
-          <ul class="contMenuPrincipal">
-            <li class="liMenuPrincipal"><a href="#home" class="active">Home</a></li>
-            <li class="liMenuPrincipal"><a href="#news">News</a></li>
-            <li class="liMenuPrincipal"><a href="#contact">Contact</a></li>
-            <li class="liMenuPrincipal"><Menus></Menus></li>
-            <li class="liMenuPrincipal"><a href="#about">About</a></li>
-            <li class="liMenuPrincipal"><a href="#about">Menu Multi APP</a></li>
-            <li class="liMenuPrincipal"><Menus></Menus></li>
+        <div className="menu">
+          <ul className="contMenuPrincipal">
+            <li className="liMenuPrincipal"><a href="#home" className="active">Home</a></li>
+            <li className="liMenuPrincipal"><a href="#news">News</a></li>
+            <li className="liMenuPrincipal"><a href="#contact">Contact</a></li>
+            <li className="liMenuPrincipal"><Menus></Menus></li>
+            <li className="liMenuPrincipal"><a href="#about">About</a></li>
+            <li className="liMenuPrincipal"><a href="#about">Menu Multi APP</a></li>
+            <li className="liMenuPrincipal"><Menus></Menus></li>
           </ul>
         </div>
 
