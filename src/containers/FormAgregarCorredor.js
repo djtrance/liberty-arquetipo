@@ -9,7 +9,10 @@ class FormAgregarCorredor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
+            codigoCorredor: '',
+            nombreCorredor: '',
+            ramos:          null,
+            convenio:       null,
             body: '',
         }
     }
@@ -40,7 +43,7 @@ class FormAgregarCorredor extends Component {
                             name="codigoCorredor"
                             onChange={this.handleChange}
                             placeholder=""
-                            value={title}
+                            value={this.state.codigoCorredor}
                         />
                     </div>
                     <div class="col-25">Nombre Corredor:</div>
@@ -49,8 +52,14 @@ class FormAgregarCorredor extends Component {
                             name="nombreCorredor"
                             onChange={this.handleChange}
                             placeholder=""
-                            value={title}
+                            value={this.state.nombreCorredor}
                         />
+                    </div>
+                    <div class="col-25"><label for="">Sucursal</label></div>
+                    <div class="col-75">
+                        <select id="country" name="country" value={this.state.convenio}>
+                            <option value="mostrarConvenios">Mostrar Convenios</option>
+                        </select>
                     </div>
                     <div class="col-25"><label for="ramoProducto">Ramo y Producto:</label></div>
                     <div class="col-75">
@@ -58,7 +67,7 @@ class FormAgregarCorredor extends Component {
                             name="ramoProducto"
                             onChange={this.handleChange}
                             placeholder=""
-                            value={title}
+                            value={this.state.ramos}
                         />
                     </div>
 
@@ -71,7 +80,7 @@ class FormAgregarCorredor extends Component {
 
                     <div class="col-25"><label for="">Convenio</label></div>
                     <div class="col-75">
-                        <select id="country" name="country">
+                        <select id="country" name="country" value={this.state.convenio}>
                             <option value="mostrarConvenios">Mostrar Convenios</option>
                         </select>
                     </div>
