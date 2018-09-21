@@ -1,47 +1,60 @@
 // Form.js
 import styled from 'styled-components';
 const Form = styled.form`
-  width: 400px;
-  border: 2px solid #CFE6FF;
+  width: 50%;
   margin: auto;
-  border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
-  
-.col-10 {
+  padding: 30px;
+
+.row {
+    width: 100%;
+    overflow: hidden;
+}
+
+.col {
     float: left;
+    margin-top: 10px;
+}
+
+.inner-col {
+    float: left;
+}
+
+.col-10 {
     width: 10%;
-    margin-top: 6px;
 }
 
 .col-15 {
-    float: left;
     width: 15%;
-    margin-top: 6px;
 }
 
 .col-25 {
-    float: left;
     width: 25%;
-    margin-top: 6px;
+}
+
+.col-50 {
+    width: 50%;
 }
 
 .col-75 {
-    float: left;
     width: 75%;
-    margin-top: 6px;
 }
+
+.col-85 {
+    width: 85%;
+}
+
 .col-75-mid {
-    float: left;
     width: 75%;
-    margin-top: 6px;
     text-align: center;
 }
 
 .col-90 {
-    float: left;
     width: 90%;
-    margin-top: 6px;
+}
+
+.col-100 {
+    width: 100%;
 }
 
 @media screen and (max-width: 600px) {
@@ -71,9 +84,8 @@ input[type=submit]:hover {
 }
 input[type=text], select, textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
     resize: vertical;
 }
 .tituloForm{

@@ -9,12 +9,29 @@ class FormAgregarCorredor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            codigoCorredor: '',
-            nombreCorredor: '',
-            ramos:          null,
-            convenio:       null,
+            codigoCorredor:     '',
+            nombreCorredor:     '',
+            sucursales:         null,
+            ramos:              null,
+            convenio:           null,
+            poliza:             false,
+            endoso:             false,
+            fechaActivacion:    null,
             body: '',
-        }
+        };
+
+        this.sucursales = [
+            { codigo: '001', nombre: 'Santiago Centro'},
+            { codigo: '002', nombre: 'Providencia'},
+            { codigo: '003', nombre: 'Vitacura'},
+            { codigo: '004', nombre: 'La Florida'}
+        ];
+
+        this.convenios = [
+            { codigo: '001', nombre: 'Convenio 1'},
+            { codigo: '002', nombre: 'Convenio 2'},
+            { codigo: '003', nombre: 'Convenio 3'}
+        ];
     }
     handleChange = (e) => {
         const target = e.target;
@@ -31,92 +48,100 @@ class FormAgregarCorredor extends Component {
             .catch((err) => console.log(err));
     }
     render() {
-        const { title, body } = this.state;
+
+        let sucursalesOptions = this.sucursales.map((sucursal) =>
+            <option key={sucursal.codigo}>{sucursal.nombre}</option>
+        );
+
+        let conveniosOptions = this.convenios.map((convenio) =>
+            <option key={convenio.codigo}>{convenio.nombre}</option>
+        );
+
         return (
             <div class="container">
-                
+                <h2 class="tituloForm">Agregar Corredor</h2>
                 <Form onSubmit={this.handleSubmit}>
-                    <h2 class="tituloForm">Agregar Corredor</h2>
-                    <div class="col-25">Código Corredor:</div>
-                    <div class="col-75">
-                        <Input
-                            name="codigoCorredor"
-                            onChange={this.handleChange}
-                            placeholder=""
-                            value={this.state.codigoCorredor}
-                        />
-                    </div>
-                    <div class="col-25">Nombre Corredor:</div>
-                    <div class="col-75">
-                        <Input
-                            name="nombreCorredor"
-                            onChange={this.handleChange}
-                            placeholder=""
-                            value={this.state.nombreCorredor}
-                        />
-                    </div>
-                    <div class="col-25"><label for="">Sucursal</label></div>
-                    <div class="col-75">
-                        <select id="country" name="country" value={this.state.convenio}>
-                            <option value="mostrarConvenios">Mostrar Convenios</option>
-                        </select>
-                    </div>
-                    <div class="col-25"><label for="ramoProducto">Ramo y Producto:</label></div>
-                    <div class="col-75">
-                        <Input
-                            name="ramoProducto"
-                            onChange={this.handleChange}
-                            placeholder=""
-                            value={this.state.ramos}
-                        />
-                    </div>
-
-                    <div class="col-25"><label for="">Ramo y Producto</label></div>
-                    <div class="col-75">
-                        <select id="country" name="country">
-                            <option value="mostrarRamosProductos">Mostrar Ramos y productos</option>
-                        </select>
-                    </div>
-
-                    <div class="col-25"><label for="">Convenio</label></div>
-                    <div class="col-75">
-                        <select id="country" name="country" value={this.state.convenio}>
-                            <option value="mostrarConvenios">Mostrar Convenios</option>
-                        </select>
-                    </div>
-                    <div class="col-25"><label for="">Todas las Sucursales</label></div>
-                    <div class="col-75-mid">
-                        X
-                    </div>
-                    <div class="class-25">Test</div>
-                    <div class="class-75">|-|</div>
-
-                    <div class="col-25"><label for="">Tipo de Documento</label></div>
-
-                        <div class="col-25">
-                            <label>Póliza</label>
+                    <div class="row">
+                        <div class="col col-25"><label>Código</label></div>
+                        <div class="col col-75">
+                            <Input
+                                name="codigoCorredor"
+                                onChange={this.handleChange}
+                                placeholder=""
+                                value={this.state.codigoCorredor} />
                         </div>
-                        <div class="col-25">
-                            <label>X</label>
-                        </div>
-                        <div class="col-25">
-                            <label>Endoso</label>
-                        </div>
-                        <div class="col-25">
-                            <label>X</label>
-                        </div>
-
-
-                    <div class="col-25"></div>
-                    <div class="col-75">
-                    <TextArea
-                        name="body"
-                        onChange={this.handleChange}
-                        placeholder="body"
-                        value={body}
-                    />
                     </div>
-                    <Button>Submit</Button>
+                    <div class="row">
+                        <div class="col col-25"><label>Nombre</label></div>
+                        <div class="col col-75">
+                            <Input
+                                name="nombreCorredor"
+                                onChange={this.handleChange}
+                                placeholder=""
+                                value={this.state.nombreCorredor} />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-25"><label>Sucursal</label></div>
+                        <div class="col col-75">
+                            <select name="sucursal" value={this.state.sucursales}>
+                                <option value={null}></option>
+                                { sucursalesOptions }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-25"><label>Ramo y Producto</label></div>
+                        <div class="col col-75">
+                            <select name="ramo">
+                                <option value="mostrarRamosProductos">Mostrar Ramos y productos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-25"><label>Convenio</label></div>
+                        <div class="col col-75">
+                            <select name="convenio" value={this.state.convenio}>
+                                <option value={null}></option>
+                                { conveniosOptions }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-25"><label>Tipo de Documento</label></div>
+                        <div class="col col-75">
+                            <div class="inner-col col-50">
+                                <div class="inner-col col-15">
+                                    <input
+                                        name="poliza"
+                                        type="checkbox"
+                                        checked={this.state.poliza}/>
+                                </div>
+                                <div class="inner-col col-85">
+                                    Póliza
+                                </div>
+                            </div>
+                            <div class="inner-col col-50">
+                                <div class="inner-col col-15">
+                                    <input
+                                        name="endoso"
+                                        type="checkbox"
+                                        checked={this.state.endoso}/>
+                                </div>
+                                <div class="inner-col col-85">
+                                    Endoso
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-50">
+                            <Button>Guardar</Button>
+                        </div>
+                        <div class="col col-50">
+                            <Button>Cancelar</Button>
+                        </div>
+                    </div>
                 </Form>
             </div>
         );

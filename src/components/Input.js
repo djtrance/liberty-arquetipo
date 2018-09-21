@@ -3,14 +3,11 @@ const Input = styled.input`
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  height: 50px;
-  font-size: 25px;
+  font-size: medium;
   resize: vertical;
-  padding-left: 12px;
+  padding: 10px;
 
-  select, textarea {  
+  select, textarea {
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #ccc;
