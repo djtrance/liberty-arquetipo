@@ -91,5 +91,22 @@ input[type=text], select, textarea {
 .tituloForm{
     text-align:center
 }
+
+.selectable-item {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.selectable-item:hover {
+    background-color: #2ba0cc;
+}
+
+.caja-seleccion {
+    background-color: #FFFFFF;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: small;
+    height: 150px;
+}
 `;
 export default Form;
