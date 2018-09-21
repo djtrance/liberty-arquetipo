@@ -50,8 +50,8 @@ class DataGrid extends Component {
           sortable: true
         }
       ];
-  
-      this.state = { rows: this.createRows(1000), filters: {}, sortColumn: null, sortDirection: null };
+      
+      this.state = { rows: this.createRows(1000), filters: {}, sortColumn: null, sortDirection: null, selectedRows: [] };
     }
   
     getRandomDate = (start, end) => {
@@ -105,13 +105,20 @@ class DataGrid extends Component {
     onClearFilters = () => {
       this.setState({ filters: {} });
     };
+
+    onRowSelect = (rows) => {
+      this.setState({ selectedRows: rows });
+    };    
+
     render() {
-  
+      const rowText = this.state.selectedRows.length === 1 ? 'row' : 'rows';
         
         return (
-            
+   <div><span>{this.state.selectedRows.length} {rowText} seleccionado</span>        
 <ReactDataGrid
+   
         onGridSort={this.handleGridSort}
+        enableRowSelect="multi"
         enableCellSelect={true}
         columns={this._columns}
         rowGetter={this.rowGetter}
@@ -119,7 +126,10 @@ class DataGrid extends Component {
         minHeight={500}
         toolbar={<Toolbar enableFilter={true} filterRowsButtonText="Habilitar Filtros"/>}
         onAddFilter={this.handleFilterChange}
-        onClearFilters={this.onClearFilters} />);
+        onRowSelect={this.onRowSelect}
+        onClearFilters={this.onClearFilters} />
+    </div>    
+    );
         
     }
 }

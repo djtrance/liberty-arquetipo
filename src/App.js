@@ -47,7 +47,8 @@ class App extends Component {
           <Posts />
           <PostForm />
         </Container>
-        <DataGrid/>
+        <div class="col-75-mid"><DataGrid/></div>
+        
       </div>
 
     );
