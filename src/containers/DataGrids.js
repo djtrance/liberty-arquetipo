@@ -7,6 +7,9 @@ const { Toolbar, Data: { Selectors } } = require('react-data-grid-addons')
 class DataGrid extends Component {
     constructor(props, context) {
       super(props, context);
+      this.paginaNumber=0;
+      this.maxrecordByPage=20;
+      
       this._columns = [
         {
           key: 'id',
@@ -110,13 +113,18 @@ class DataGrid extends Component {
       this.setState({ selectedRows: rows });
     };    
 
+    next10 = ()=>{
+      this.paginaNumber=this.paginaNumber+10;
+    }
+
     render() {
-      const rowText = this.state.selectedRows.length === 1 ? 'row' : 'rows';
+      const rowText = this.state.selectedRows.length === 1 ? 'Fila' : 'Filas';
         
         return (
-   <div><span>{this.state.selectedRows.length} {rowText} seleccionado</span>        
-<ReactDataGrid
-   
+   <div><span>{this.state.selectedRows.length} {rowText} seleccionada</span>  
+        <div><button onClick={this.next10}>Pagina {this.paginaNumber + 10 }</button></div>      
+        <ReactDataGrid
+        scrollToRowIndex={this.paginaNumber}
         onGridSort={this.handleGridSort}
         enableRowSelect="multi"
         enableCellSelect={true}
