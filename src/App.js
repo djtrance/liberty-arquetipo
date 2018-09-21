@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PostForm from './containers/PostForm';
 import FormAgregarCorredor from './containers/FormAgregarCorredor';
 import Menus from './containers/Menus';
-import DataGrid from './containers/DataGrid';
+import DataGrid from './containers/DataGrids';
 import './App.css';
 
 const Container = styled.div`

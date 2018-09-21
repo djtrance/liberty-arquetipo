@@ -32,7 +32,7 @@ class Menus extends Component {
         return (
             <div>
 
-                <a onClick={this.showMenu}>Seleccion Aplicación</a>
+                <a onClick={this.showMenu}>Mantenedor de Impresiones Digitales</a>
                     
 
 

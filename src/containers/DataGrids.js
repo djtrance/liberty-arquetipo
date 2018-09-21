@@ -117,7 +117,7 @@ class DataGrid extends Component {
         rowGetter={this.rowGetter}
         rowsCount={this.getSize()}
         minHeight={500}
-        toolbar={<Toolbar enableFilter={true}/>}
+        toolbar={<Toolbar enableFilter={true} filterRowsButtonText="Habilitar Filtros"/>}
         onAddFilter={this.handleFilterChange}
         onClearFilters={this.onClearFilters} />);
         
