@@ -116,10 +116,20 @@ class DataGrid extends Component {
       this.setState({ selectedRows: rows });
     };    
 
+    prev10 = ()=>{
+      
+      if((this.paginaNumber -10)<0){
+        this.paginaNumber=0;
+      }
+      else{
+        this.paginaNumber=this.paginaNumber-10;
+      }
+      this.setState({});
+    }
     next10 = ()=>{
       this.paginaNumber=this.paginaNumber+10;
+      this.setState({});
     }
-
     enableFilter = ()=>{
       this.filterState=!this.filterState;
     }
@@ -129,7 +139,7 @@ class DataGrid extends Component {
         
         return (
    <div><span>{this.state.selectedRows.length} {rowText} seleccionada</span>  
-        <div><button onClick={this.next10}>Pagina {this.paginaNumber + 10 }</button></div>      
+              
 
         <ReactDataGrid
         scrollToRowIndex={this.paginaNumber}
@@ -143,7 +153,7 @@ class DataGrid extends Component {
         enableFilter={true}
         toolbar={
                 <Toolbar enableFilter={true} filterRowsButtonText="Habilitar Filtros">
-
+                    <button onClick={this.prev10}>Página {this.paginaNumber < 0? this.paginaNumber- 10:0 }</button>
                     <button onClick={this.next10}>Página {this.paginaNumber + 10 }</button>
                 </Toolbar>
                 }
