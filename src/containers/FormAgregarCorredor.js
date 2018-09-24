@@ -217,21 +217,17 @@ class FormAgregarCorredor extends Component {
                     <div className="row">
                         <div className="col col-25"><label>Ramo y Producto</label></div>
                         <div className="col col-75">
-                            <select name="ramo">
-                                <option value="mostrarRamosProductos">Mostrar Ramos y productos</option>
-                            </select>
-                        </div>
-
-
-                    </div>
-                    <div className="row">
-                        <div className="col col-25"><label>Tipo de Documento</label></div>
-                        <div className="col col-75">
-                            <div className="inner-col col-50 caja-seleccion">
-                                { this.obtenerItemsRamos() }
+                            <div className="inner-col col-50">
+                                <span>Ramo</span>
+                                <div className="caja-seleccion">
+                                    { this.obtenerItemsRamos() }
+                                </div>
                             </div>
-                            <div className="inner-col col-50 caja-seleccion">
-                                { this.obtenerItemsProductos() }
+                            <div className="inner-col col-50">
+                                <span>Producto</span>
+                                <div className="caja-seleccion">
+                                    { this.obtenerItemsProductos() }
+                                </div>
                             </div>
                         </div>
                     </div>
