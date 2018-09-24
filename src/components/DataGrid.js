@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import ReactDataGrid from 'react-data-grid';
 
+//hoja de estilo
+
+import './../styles/style1.css'
+
 const { Toolbar, Data: { Selectors } } = require('react-data-grid-addons')
 class DataGrid extends Component {
     constructor(props, context) {
       super(props, context);
       this.paginaNumber=0;
       this.maxrecordByPage=20;
+      this.filterState=false;
       
       this._columns = [
         {
@@ -115,6 +120,10 @@ class DataGrid extends Component {
       this.paginaNumber=this.paginaNumber+10;
     }
 
+    enableFilter = ()=>{
+      this.filterState=!this.filterState;
+    }
+    
     render() {
       const rowText = this.state.selectedRows.length === 1 ? 'Fila' : 'Filas';
         
@@ -131,7 +140,13 @@ class DataGrid extends Component {
         rowGetter={this.rowGetter}
         rowsCount={this.getSize()}
         minHeight={500}
-        toolbar={<Toolbar enableFilter={true} filterRowsButtonText="Habilitar Filtros"><button onClick={this.next10}>Pagina {this.paginaNumber + 10 }</button></Toolbar>}
+        enableFilter={true}
+        toolbar={
+                <Toolbar enableFilter={true} filterRowsButtonText="Habilitar Filtros">
+
+                    <button onClick={this.next10}>Página {this.paginaNumber + 10 }</button>
+                </Toolbar>
+                }
         onAddFilter={this.handleFilterChange}
         onRowSelect={this.onRowSelect}
         onClearFilters={this.onClearFilters} /> 
