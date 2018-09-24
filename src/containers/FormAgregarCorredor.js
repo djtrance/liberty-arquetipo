@@ -100,8 +100,10 @@ class FormAgregarCorredor extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
+        console.log(name + ': ' + value);
+
         this.setState({
-        [name]: value
+            [name]: value
         });
     }
 
@@ -117,10 +119,12 @@ class FormAgregarCorredor extends Component {
     }
 
     seleccionarProductosDelRamo = (e, indexRamo) => {
+        var main = this;
         this.handleChange(e);
         this.state.productos.forEach(
-            (producto) => {
-                producto.seleccionado = this.ramos[indexRamo].seleccionado;
+            (producto, index) => {
+                console.log(index + ' >> ' + main.state['ramo_' + indexRamo]);
+                this.state['producto_' + index] = main.state['ramo_' + indexRamo];
             }
         );
         this.updateState();
@@ -145,9 +149,8 @@ class FormAgregarCorredor extends Component {
                     className="selectable-item"
                     onClick={() => this.obtenerProductosDelRamo(index)}>
                 <input
-                    name="endoso"
+                    name={'ramo_' + index }
                     type="checkbox"
-                    value={this.ramos[index].seleccionado}
                     onChange={(e) => this.seleccionarProductosDelRamo(e,index)}/>
                 { ramo.nombre }
             </div>
@@ -160,11 +163,9 @@ class FormAgregarCorredor extends Component {
             <div    key={producto.codigo} 
                     className="selectable-item">
                 <input
-                    name="endoso"
+                    name={'producto_' + index }
                     type="checkbox"
-                    value={this.state.productos[index].seleccionado}
-                    onChange={this.handleChange}
-                    checked={this.state.productos[index].seleccionado}/>
+                    onChange={this.handleChange}/>
                 { producto.nombre }
             </div>
         );
@@ -192,8 +193,7 @@ class FormAgregarCorredor extends Component {
                             <Input
                                 name="codigoCorredor"
                                 onChange={this.handleChange}
-                                placeholder=""
-                                value={this.state.codigoCorredor} />
+                                placeholder=""/>
                         </div>
                     </div>
                     <div className="row">
@@ -202,14 +202,13 @@ class FormAgregarCorredor extends Component {
                             <Input
                                 name="nombreCorredor"
                                 onChange={this.handleChange}
-                                placeholder=""
-                                value={this.state.nombreCorredor} />
+                                placeholder=""/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col col-25"><label>Sucursal</label></div>
                         <div className="col col-75">
-                            <select name="sucursal" value={this.state.sucursales}>
+                            <select name="sucursal">
                                 <option value="-1"></option>
                                 { this.obtenerOpcionesSucursales() }
                             </select>
@@ -253,8 +252,7 @@ class FormAgregarCorredor extends Component {
                                     <input
                                         name="poliza"
                                         type="checkbox"
-                                        onChange={this.handleChange}
-                                        value={this.state.poliza}/>
+                                        onChange={this.handleChange}/>
                                 </div>
                                 <div className="inner-col col-85">
                                     Póliza
@@ -265,8 +263,7 @@ class FormAgregarCorredor extends Component {
                                     <input
                                         name="endoso"
                                         type="checkbox"
-                                        onChange={this.handleChange}
-                                        value={this.state.endoso}/>
+                                        onChange={this.handleChange}/>
                                 </div>
                                 <div className="inner-col col-85">
                                     Endoso
