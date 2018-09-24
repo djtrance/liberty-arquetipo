@@ -19,8 +19,12 @@
   cursor: pointer !important;
 }
 
+.selectable-item-active {
+  background-color: #72D2F5;
+}
+
 .selectable-item:hover {
-  background-color: #2ba0cc;
+  background-color: #B6E7F9;
 }
 
 .caja-seleccion {
@@ -29,6 +33,7 @@
   padding-bottom: 15px;
   font-size: small;
   height: 150px;
+  overflow-y: scroll;
 }
 
 .mr-10px {

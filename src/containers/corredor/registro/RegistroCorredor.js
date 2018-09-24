@@ -4,16 +4,16 @@ class RegistroCorredor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            form: {
-                codigoCorredor:     '',
-                nombreCorredor:     '',
-                sucursales:         null,
-                ramos:              null,
-                convenio:           null,
-                poliza:             false,
-                endoso:             false,
-            }
+            codigoCorredor:     '',
+            nombreCorredor:     '',
+            sucursales:         null,
+            ramos:              null,
+            convenio:           null,
+            checkPoliza:        false,
+            checkEndoso:        false
         };
+
+        this.productosSeleccionados = [];
 
         this.sucursales = [
             { codigo: '001', nombre: 'Santiago Centro'},
@@ -84,60 +84,160 @@ class RegistroCorredor extends Component {
                         seleccionado:   false
                     }
                 ]
+            },
+            {
+                codigo: 'R004',
+                nombre: 'Garantía y Crédito',
+                seleccionado:   false,
+                productos: [
+                    {
+                        codigo: 'P001',
+                        nombre: 'Garantía',
+                        seleccionado:   false
+                    },
+                    {
+                        codigo: 'P002',
+                        nombre: 'Fidelidad',
+                        seleccionado:   false
+                    },
+                    {
+                        codigo: 'P002',
+                        nombre: 'Seguro Extensión y Garantía',
+                        seleccionado:   false
+                    },
+                    {
+                        codigo: 'P002',
+                        nombre: 'Seguro de Crédito por Ventas a Plazo',
+                        seleccionado:   false
+                    },
+                    {
+                        codigo: 'P002',
+                        nombre: 'Seguro de Crédito a la Exportación',
+                        seleccionado:   false
+                    }
+                ]
+            },
+            {
+                codigo: 'R005',
+                nombre: ' Otros Seguros',
+                seleccionado:   false,
+                productos: [
+                    {
+                        codigo: 'P001',
+                        nombre: 'Seguro Cesantía',
+                        seleccionado:   false
+                    },
+                    {
+                        codigo: 'P001',
+                        nombre: 'Seguro de Título',
+                        seleccionado:   false
+                    },
+                    {
+                        codigo: 'P001',
+                        nombre: 'Seguro Agrícola',
+                        seleccionado:   false
+                    }
+                ]
             }
         ];
 
         this.state.productos = [];
     }
 
+    /**
+     * Manejador por defecto del evento change de un componente
+     * @param e Evento Change
+     */
     handleChange = (e) => {
-        console.log('handleChange...');
-        const target = e.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        console.log(name + ': ' + value);
-
+        const target    = e.target;
+        const value     = target.type === 'checkbox' ? target.checked : target.value;
+        const name      = target.name;
         this.setState({
             [name]: value
         });
     }
 
+    /**
+     * Agrega o elimina un producto del listado de productos seleccionados
+     * @param agregar true si la acción a ejecutar es agregar, false en caso contrario
+     * @param index Posición del producto en el arreglo de productos
+     */
+    agregarEliminarProducto = (agregar, index) => {
+        
+        var productoAgregar = this.state.productos[index];
+
+        if (agregar) {
+            this.productosSeleccionados.push(productoAgregar);
+        } else {
+            var comp = this;
+            this.productosSeleccionados.forEach(function(producto, i){
+                if (producto.codigo === productoAgregar.codigo) {
+                    comp.productosSeleccionados.splice(i,1);
+                }
+            });
+        }
+
+        this.state['producto_' + this.obtenerCodigoProductoCompuesto(productoAgregar)] = agregar;
+        this.updateState();
+    }
+
+    /**
+     * Actualiza en el state, el atributo productos con los productos pertenecientes al ramo seleccionado
+     * @param indexRamo Posicion del ramo en el arreglo
+     */
     obtenerProductosDelRamo = (indexRamo) => {
+        this.ramoActivoIndex    = indexRamo;
+        this.ramoActivoCodigo   = this.ramos[indexRamo].codigo;
         this.updateState('productos', this.ramos[indexRamo].productos);
     }
 
-    seleccionarProductosDelRamo = (e, indexRamo) => {
+    /**
+     * Selecciona o deselecciona todos los productos del ramo indicado
+     * @param seleccionar True si la acción a ejecutar es seleccionar los productos del ramo, false en caso contrario
+     * @param indexRamo Posicion del ramo en el arreglo
+     */
+    selDeselProductosDelRamo = (seleccionar, indexRamo) => {
         var main = this;
-        this.handleChange(e);
+
         this.state.productos.forEach(
             (producto, index) => {
-                console.log(index + ' >> ' + main.state['ramo_' + indexRamo]);
-                this.state['producto_' + index] = main.state['ramo_' + indexRamo];
+                this.state['producto_' + this.obtenerCodigoProductoCompuesto(producto)] = seleccionar;
+                this.agregarEliminarProducto(seleccionar, index);
             }
         );
         this.updateState();
     }
 
+    /**
+     * Devuelve los elementos option correspondientes a las sucursales dispobibles
+     */
     obtenerOpcionesSucursales = () => {
         return this.sucursales.map(
-            (sucursal) => <option key={sucursal.codigo}>{sucursal.nombre}</option>
+            (sucursal, index) => <option key={'sucursal_' + index} value={sucursal.codigo}>{sucursal.nombre}</option>
         );
     }
 
+    /**
+     * Devuelve los elementos option correspondientes a los convenios dispobibles
+     */
     obtenerOpcionesConvenios = () => {
         return this.convenios.map(
-            (convenio) => <option key={convenio.codigo}>{convenio.nombre}</option>
+            (convenio, index) => <option key={'convenio_' + index} value={convenio.codigo}>{convenio.nombre}</option>
         );
     }
 
+    /**
+     * Devuelve los elementos HTML seleccionables correspondientes a los ramos disponibles
+     */
     obtenerItemsRamos = () => {
         return this.ramos.map(
             (ramo, index) =>
-            <div className="selectable-item" onClick={() => this.obtenerProductosDelRamo(index)}>
-                <div key={ramo.codigo} className="form-check" >
-                    <input className="form-check-input" name={'ramo_' + index } type="checkbox" 
-                    onChange={(e) => this.seleccionarProductosDelRamo(e,index)}/>
+            <div    key={'ramo_' + index } 
+                    className={ this.ramoActivoIndex === index ? 'selectable-item selectable-item-active' : 'selectable-item'} 
+                    onClick={() => this.obtenerProductosDelRamo(index)}>
+                <div className="form-check" >
+                    <input className="form-check-input" name={'ramo_' + ramo.codigo } type="checkbox" 
+                    onChange={(e) => this.selDeselProductosDelRamo(e.target.checked,index)}/>
                     <span className="form-check-label">
                         { ramo.nombre }
                     </span>
@@ -146,12 +246,18 @@ class RegistroCorredor extends Component {
         );
     }
 
+    /**
+     * Devuelve los elementos HTML seleccionables correspondientes a los productos disponibles
+     */
     obtenerItemsProductos = () => {
         return this.state.productos.map(
             (producto, index) =>
-            <div className="selectable-item">
-                <div key={producto.codigo} className="form-check">
-                    <input className="form-check-input" name={'producto_' + index } type="checkbox" onChange={this.handleChange}/>
+            <div key={'producto_' + index } className="selectable-item">
+                <div className="form-check">
+                    <input  className="form-check-input"
+                            name={'producto_' + this.obtenerCodigoProductoCompuesto(producto) }
+                            type="checkbox" onChange={(e) => this.agregarEliminarProducto(e.target.checked,index)}
+                            checked={this.state['producto_' + this.obtenerCodigoProductoCompuesto(producto)]}/>
                     <span className="form-check-label">
                         { producto.nombre }
                     </span>
@@ -160,6 +266,15 @@ class RegistroCorredor extends Component {
         );
     }
 
+    obtenerCodigoProductoCompuesto (producto){
+        return this.ramoActivoCodigo + '-' + producto.codigo 
+    }
+
+    /**
+     * Actualiza un atributo del state e invoca el setState
+     * @param {*} attrName Nombre del atributo a actualizar
+     * @param {*} attrValue Valor del atributo
+     */
     updateState (attrName, attrValue) {
         if (attrName && attrValue) {
             this.state[attrName] = attrValue;
@@ -167,8 +282,12 @@ class RegistroCorredor extends Component {
         this.setState(this.state);
     }
 
+    /**
+     * Registra la información ingresada
+    */
     registrarCorredor () {
-        console.log('STATE > ' + this.state);
+        console.log('* Registrar Corredor *');
+        console.log(this.state);
     }
 
     render() {
@@ -183,15 +302,17 @@ class RegistroCorredor extends Component {
                 <form>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Código</label>
-                        <input className="form-control" name="codigoCorredor" onChange={this.handleChange} />
+                        <input className="form-control" name="codigoCorredor" 
+                            value={this.state.codigoCorredor} onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Nombre</label>
-                        <input className="form-control" name="nombreCorredor" onChange={this.handleChange} />
+                        <input className="form-control" name="nombreCorredor" 
+                            value={this.state.nombreCorredor} onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Sucursal</label>
-                        <select className="form-control" name="sucursal">
+                        <select className="form-control" name="sucursal" value={this.state.sucursales} onChange={this.handleChange}>
                             <option value="-1"></option>
                             { this.obtenerOpcionesSucursales() }
                         </select>
@@ -215,7 +336,7 @@ class RegistroCorredor extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Convenio</label>
-                        <select className="form-control" name="convenio" value={this.state.convenio}>
+                        <select className="form-control" name="convenio" value={this.state.convenio} onChange={this.handleChange}>
                             <option value="-1"></option>
                             { this.obtenerOpcionesConvenios() }
                         </select>
@@ -225,7 +346,8 @@ class RegistroCorredor extends Component {
                         <div className="form-row">
                             <div className="col-md-2">
                                 <div className="form-check">
-                                    <input className="form-check-input" name="poliza" type="checkbox" onChange={this.handleChange}/>
+                                    <input className="form-check-input" name="checkPoliza" type="checkbox" 
+                                    value={this.state.checkPoliza} onChange={this.handleChange}/>
                                     <label className="form-check-label" htmlFor="poliza">
                                         Póliza
                                     </label>
@@ -233,7 +355,8 @@ class RegistroCorredor extends Component {
                             </div>
                             <div className="col-md-2">
                                 <div className="form-check">
-                                    <input className="form-check-input" name="endoso" type="checkbox" onChange={this.handleChange}/>
+                                    <input className="form-check-input" name="checkEndoso" type="checkbox" 
+                                    value={this.state.checkEndoso} onChange={this.handleChange}/>
                                     <label className="form-check-label" htmlFor="endoso">
                                         Endoso
                                     </label>
