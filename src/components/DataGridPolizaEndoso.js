@@ -32,35 +32,10 @@ class iconDocFormater extends React.Component {
   }
 }
 
-class linkFormater extends React.Component {
-  static propTypes = {
-    value: PropTypes.string.isRequired
-  };
-
-  render() {
-    const valorEntrada = this.props.value;
-
-    if (valorEntrada === "Ver") {
-      this.link = '#';
-      console.log("valor -> "+ valorEntrada);
-    }
-    else {
-      this.icono = '#';
-    }
-
-    return (
-      <div>
-        <a href={this.link}>{valorEntrada}</a>
-
-
-      </div>
-    );
-  }
-}
 
 
 const { Toolbar, Data: { Selectors } } = require('react-data-grid-addons')
-class DataGrid extends Component {
+class DataGridPolizaEndoso extends Component {
   constructor(props, context) {
     super(props, context);
     this.paginaNumber = 0;
@@ -69,15 +44,35 @@ class DataGrid extends Component {
 
     this._columns = [
       {
-        key: 'corredor',
-        name: 'Corredor',
-        width: 80
+        key: 'tipoMovimiento',
+        name: 'Tipo Movimiento',
+        width: 140
       },
       {
-        key: 'convenio',
-        name: 'Convenio',
+        key: 'numeroPoliza',
+        name: 'N° Póliza',
         filterable: true,
         sortable: true
+      },
+      {
+        key: 'numeroPropuesta',
+        name: 'N° Propuesta',
+        filterable: true,
+        sortable: true
+      },
+      {
+        key: 'numeroEndoso',
+        name: 'N° Endoso',
+        filterable: true,
+        sortable: true,
+        width: 100
+      },
+      {
+        key: 'contratante',
+        name: 'Contratante',
+        filterable: true,
+        sortable: true,
+        width: 140
       },
       {
         key: 'ramo',
@@ -86,36 +81,10 @@ class DataGrid extends Component {
         sortable: true
       },
       {
-        key: 'producto',
-        name: 'Producto',
+        key: 'convenio',
+        name: 'Convenio',
         filterable: true,
         sortable: true
-      },
-      {
-        key: 'tipoDoc',
-        name: 'Tipo de Documento',
-        filterable: true,
-        sortable: true
-      },
-      {
-        key: 'contrato',
-        name: 'Contrato',
-        filterable: true,
-        sortable: true,
-        formatter: iconDocFormater
-      },
-      {
-        key: 'estado',
-        name: 'Estado',
-        filterable: true,
-        sortable: true
-      },
-      {
-        key: 'historial',
-        name: 'Historial',
-        filterable: true,
-        sortable: true,
-        formatter:linkFormater
       }
     ];
 
@@ -128,7 +97,7 @@ class DataGrid extends Component {
 
   getDatos = () => {
     let rows = [];
-    getDataDb('all')
+    getDataDb('polizaEndoso')
       .then((res) => {
         this.setState({
           posts: res.data,
@@ -208,10 +177,7 @@ class DataGrid extends Component {
 
     return (
       <div>
-                    
-                    <a className="nav-link" href="#/corredor/registro">
-                    <i className="nav-icon icon-pencil"></i>Registrar Corredor
-                </a>
+
         <span>{this.state.selectedRows.length} {rowText} seleccionada</span>
         <ReactDataGrid
           scrollToRowIndex={this.paginaNumber}
@@ -248,4 +214,4 @@ class DataGrid extends Component {
 
   }
 }
-export default DataGrid;
+export default DataGridPolizaEndoso;
