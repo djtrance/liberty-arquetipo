@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Alert from '../../common/alert/Alert';
+import MESSAGES from '../../../constants/message';
 
 class RegistroCorredor extends Component {
     constructor(props) {
@@ -10,7 +12,12 @@ class RegistroCorredor extends Component {
             ramos:              null,
             convenio:           null,
             checkPoliza:        false,
-            checkEndoso:        false
+            checkEndoso:        false,
+            resultAlert: {
+                show:       false,
+                tipo:       null,
+                mensaje:    ''
+            }
         };
 
         this.productosSeleccionados = [];
@@ -286,14 +293,17 @@ class RegistroCorredor extends Component {
      * Registra la información ingresada
     */
     registrarCorredor () {
-        console.log('* Registrar Corredor *');
-        console.log(this.state);
+        this.showResultAlert(MESSAGES.TIPO.SUCCESS, MESSAGES.CORREDOR.REGISTRO.EXITO);
+    }
+
+    showResultAlert (tipo, mensaje) {
+        this.state.resultAlert.show     = true;
+        this.state.resultAlert.tipo     = tipo;
+        this.state.resultAlert.mensaje  = mensaje;
+        this.updateState();
     }
 
     render() {
-
-        console.log('render...');
-
         // TODO: Eliminar el style= del h2
         return (
             <div className="container">
@@ -364,6 +374,15 @@ class RegistroCorredor extends Component {
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Autorización</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comentarios</label>
+                        <textarea class="form-control" rows="4" id="comment"></textarea>
+                    </div>
+                    { this.state.resultAlert.show ? <Alert alert={this.state.resultAlert}/> : null }
                     <div className="form-row">
                         <div className="col">
                             <button className="btn btn-primary btn-ajustable"
