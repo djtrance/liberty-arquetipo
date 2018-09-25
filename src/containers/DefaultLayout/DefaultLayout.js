@@ -1,6 +1,6 @@
 import React, { Component }         from 'react';
 import { Redirect, Route, Switch }  from 'react-router-dom';
-import { Container, Nav, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
+import { Container } from 'reactstrap';
 import Aside from '../common/aside/Aside';
 //hoja de estilo
 import '../../styles/style1.css'
