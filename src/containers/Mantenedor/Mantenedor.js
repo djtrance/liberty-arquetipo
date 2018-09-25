@@ -11,7 +11,7 @@ class Mantenedor extends Component {
   render() {
     return (
       <div className="app">
-      <h1>TEST</h1>
+      <h1>Mantenedor</h1>
       <ReactDataGrid/>
       </div>
     );

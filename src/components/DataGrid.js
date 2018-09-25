@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactDataGrid from 'react-data-grid';
+import {getDataDb} from '../services/api';
+
 
 //hoja de estilo
 
@@ -15,56 +17,99 @@ class DataGrid extends Component {
       
       this._columns = [
         {
-          key: 'id',
-          name: 'ID',
+          key: 'corredor',
+          name: 'Corredor',
           width: 80
         },
         {
-          key: 'task',
-          name: 'Title',
+          key: 'convenio',
+          name: 'Convenio',
           filterable: true,
           sortable: true
         },
         {
-          key: 'priority',
-          name: 'Priority',
+          key: 'ramo',
+          name: 'Ramo',
           filterable: true,
           sortable: true
         },
         {
-          key: 'issueType',
-          name: 'Issue Type',
+          key: 'producto',
+          name: 'Producto',
           filterable: true,
           sortable: true
         },
         {
-          key: 'complete',
-          name: '% Complete',
+          key: 'tipoDoc',
+          name: 'Tipo de Documento',
           filterable: true,
           sortable: true
         },
         {
-          key: 'startDate',
-          name: 'Start Date',
+          key: 'contrato',
+          name: 'Contrato',
           filterable: true,
           sortable: true
         },
         {
-          key: 'completeDate',
-          name: 'Expected Complete',
+          key: 'estado',
+          name: 'Estado',
+          filterable: true,
+          sortable: true
+        },
+        {
+          key: 'historial',
+          name: 'Historial',
           filterable: true,
           sortable: true
         }
       ];
       
-      this.state = { rows: this.createRows(1000), filters: {}, sortColumn: null, sortDirection: null, selectedRows: [] };
+      this.state = { rows: this.getDatos(), datos:this.createRows(10) , filters: {}, sortColumn: null, sortDirection: null, selectedRows: []};
     }
   
     getRandomDate = (start, end) => {
       return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toLocaleDateString();
     };
+
+    getDatos = () => {
+      let rows=[];
+      getDataDb('all')
+      .then((res) => {
+          this.setState({
+              posts: res.data,
+              loading: false,
+          });
+          console.log("respueta servicio");
+          console.log(res);
+          if(res.data.estatus.codigo==='2')
+            {
+              rows=(res.data.respuesta);
+              /*rows.push({       
+              id: 3,
+              corredor: "08960/010 Poblete",
+              convenio: "2222",
+              ramo: "6",
+
+              producto: "012xxx",
+              
+              tipoDoc: "Póliza",
+              contrato: "pdf",
+              estado: "Activo",
+              historial: "Ver"});*/
+              console.log("data ");
+              console.log(rows);
+              this.setState({ 'rows': rows });
+            }
+          
+      })
+      .catch((err) => console.log(err));
+      return rows;
+    }
+
   
     createRows = (numberOfRows) => {
+      
       let rows = [];
       for (let i = 1; i < numberOfRows; i++) {
         rows.push({
@@ -76,7 +121,10 @@ class DataGrid extends Component {
           startDate: this.getRandomDate(new Date(2015, 3, 1), new Date()),
           completeDate: this.getRandomDate(new Date(), new Date(2016, 0, 1))
         });
+
       }
+      console.log("Rows");
+      console.log(rows);
       return rows;
     };
   
@@ -124,6 +172,7 @@ class DataGrid extends Component {
       else{
         this.paginaNumber=this.paginaNumber-10;
       }
+      console.log(this.state);
       this.setState({});
     }
     next10 = ()=>{
