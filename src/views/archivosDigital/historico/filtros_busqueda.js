@@ -53,7 +53,7 @@ class filtros_busqueda extends Component {
                 <Col xs="12" md="12">
                     <Card>
                         <CardHeader>
-                            <strong>BFiltros de búsqueda</strong>
+                            <strong>Filtros de búsqueda</strong>
                         </CardHeader>
                         <CardBody>
                             <Form action="" method="post" encType="multipart/form-data" className="form-horizontal">
@@ -81,8 +81,14 @@ class filtros_busqueda extends Component {
                             </Form>
                         </CardBody>
                         <CardFooter>
-                            <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                            <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
+                            <Button type="submit" size="sm" color="primary">
+                                <i className="fa fa-dot-circle-o"></i>
+                                Buscar
+                            </Button>
+                            <Button type="reset" size="sm" color="danger">
+                                <i className="fa fa-ban"></i>
+                                Limpiar
+                            </Button>
                         </CardFooter>
                     </Card>
                 </Col>
