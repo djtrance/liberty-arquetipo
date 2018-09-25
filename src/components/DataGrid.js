@@ -32,6 +32,31 @@ class iconDocFormater extends React.Component {
   }
 }
 
+class linkFormater extends React.Component {
+  static propTypes = {
+    value: PropTypes.string.isRequired
+  };
+
+  render() {
+    const valorEntrada = this.props.value;
+
+    if (valorEntrada === "Ver") {
+      this.link = '#';
+      console.log("valor -> "+ valorEntrada);
+    }
+    else {
+      this.icono = '#';
+    }
+
+    return (
+      <div>
+        <a href={this.link}>{valorEntrada}</a>
+
+
+      </div>
+    );
+  }
+}
 
 
 const { Toolbar, Data: { Selectors } } = require('react-data-grid-addons')
@@ -89,7 +114,8 @@ class DataGrid extends Component {
         key: 'historial',
         name: 'Historial',
         filterable: true,
-        sortable: true
+        sortable: true,
+        formatter:linkFormater
       }
     ];
 
