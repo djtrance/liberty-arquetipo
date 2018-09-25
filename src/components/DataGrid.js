@@ -209,6 +209,9 @@ class DataGrid extends Component {
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item"><a class="page-link" href="#"><FontAwesomeIcon icon="download" /></a></li>
+            
+            
           </ul>
         </div>
       </div>
