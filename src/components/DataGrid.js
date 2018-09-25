@@ -24,7 +24,7 @@ class iconDocFormater extends React.Component {
     }
 
     return (
-      <div>
+      <div style={{textAlign: 'center'}}>
         <FontAwesomeIcon icon={this.icono} />
 
       </div>
@@ -49,7 +49,7 @@ class linkFormater extends React.Component {
     }
 
     return (
-      <div>
+      <div style={{textAlign: 'center'}}>
         <a href={this.link}>{valorEntrada}</a>
 
 
@@ -229,14 +229,12 @@ class DataGrid extends Component {
           onClearFilters={this.onClearFilters} />
         <div class="mt-1">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
             <li class="page-item"><a class="page-link" href="#"><FontAwesomeIcon icon="download" /></a></li>
-            
-            
           </ul>
         </div>
       </div>
