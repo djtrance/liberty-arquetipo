@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Alert from '../../common/alert/Alert';
 import MESSAGES from '../../../constants/message';
-import { nameOfAnimation as Menu } from 'react-burger-menu'
 
 class RegistroCorredor extends Component {
     constructor(props) {
@@ -294,6 +293,7 @@ class RegistroCorredor extends Component {
      * Registra la información ingresada
     */
     registrarCorredor () {
+        console.log('registro....');
         this.showResultAlert(MESSAGES.TIPO.SUCCESS, MESSAGES.CORREDOR.REGISTRO.EXITO);
     }
 
@@ -307,9 +307,9 @@ class RegistroCorredor extends Component {
     render() {
         // TODO: Eliminar el style= del h2
         return (
-            <Menu>
             <div className="container">
-                <h2 style={{textAlign: 'center'}}>Registrar Corredor</h2>
+                <h4 style={{textAlign: 'center'}}>Registrar Corredor</h4>
+
                 <form>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Código</label>
@@ -375,13 +375,13 @@ class RegistroCorredor extends Component {
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="exampleFormControlFile1">Autorización</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+                        <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="comment">Comentarios</label>
-                        <textarea class="form-control" rows="4" id="comment"></textarea>
+                        <textarea className="form-control" rows="4" id="comment"></textarea>
                     </div>
                     { this.state.resultAlert.show ? <Alert alert={this.state.resultAlert}/> : null }
                     <div className="form-row">
@@ -395,7 +395,6 @@ class RegistroCorredor extends Component {
                     </div>
                 </form>
             </div>
-            </Menu>
         );
     }
 }

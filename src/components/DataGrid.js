@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {getDataDb} from '../services/api';
-import RegistroCorredor from '../containers/corredor/registro/RegistroCorredor';
+import { slide as Menu } from 'react-burger-menu';
 
 //hoja de estilo
 
@@ -14,6 +14,9 @@ class DataGrid extends Component {
       this.paginaNumber=0;
       this.maxrecordByPage=20;
       this.filterState=false;
+
+
+      console.log('DATA GRID....');
       
       this._columns = [
         {
@@ -65,7 +68,8 @@ class DataGrid extends Component {
         }
       ];
       
-      this.state = { rows: this.getDatos(), datos:this.createRows(10) , filters: {}, sortColumn: null, sortDirection: null, selectedRows: []};
+      this.state = { rows: this.getDatos(), datos:this.createRows(10) , filters: {}, sortColumn: null, sortDirection: null, selectedRows: [],
+      registroAsideOpen: false};
     }
   
     getRandomDate = (start, end) => {
@@ -189,18 +193,6 @@ class DataGrid extends Component {
         return (
     <div><span>{this.state.selectedRows.length} {rowText} seleccionada</span>  
               
-              <a className="nav-link" href="#/corredor/registro">
-                    <i className="nav-icon icon-pencil"></i>Registrar Corredor
-                </a>
-
-                <div id="outer-container">
-                <RegistroCorredor/>
-                <main id="page-wrap">
-                    .
-                    .
-                    .
-                </main>
-                </div>
         <ReactDataGrid
         scrollToRowIndex={this.paginaNumber}
         onGridSort={this.handleGridSort}

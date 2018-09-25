@@ -11,9 +11,9 @@ class DefaultSidebar extends Component {
                             <i className="nav-icon icon-drop"></i>Archivos Digital
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#/Mantenedor">
-                            <i class="nav-icon icon-pencil"></i>Mantenedor
+                    <li className="nav-item">
+                        <a className="nav-link" href="#/Mantenedor">
+                            <i className="nav-icon icon-pencil"></i>Mantenedor
                         </a>
                     </li>
                     <li className="nav-item">
