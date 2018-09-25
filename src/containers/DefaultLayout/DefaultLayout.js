@@ -17,9 +17,9 @@ class DefaultLayout extends Component {
     return (
       <div className="app">
 
-        <div class="app-header navbar">       
-          <a class="navbar-brand">
-            <img src={{logo}} width="89" height="25" alt="Liberty Seguros | Chile" class="navbar-brand-full"/>
+        <div className="app-header navbar">       
+          <a className="navbar-brand">
+            <img src={{logo}} width="89" height="25" alt="Liberty Seguros | Chile" className="navbar-brand-full"/>
           </a>
           <DefaultHeader />
         </div>
