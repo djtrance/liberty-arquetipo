@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Alert from '../../common/alert/Alert';
 import MESSAGES from '../../../constants/message';
+import { nameOfAnimation as Menu } from 'react-burger-menu'
 
 class RegistroCorredor extends Component {
     constructor(props) {
@@ -306,9 +307,9 @@ class RegistroCorredor extends Component {
     render() {
         // TODO: Eliminar el style= del h2
         return (
+            <Menu>
             <div className="container">
                 <h2 style={{textAlign: 'center'}}>Registrar Corredor</h2>
-
                 <form>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Código</label>
@@ -394,6 +395,7 @@ class RegistroCorredor extends Component {
                     </div>
                 </form>
             </div>
+            </Menu>
         );
     }
 }

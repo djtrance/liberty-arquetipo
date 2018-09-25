@@ -8,6 +8,7 @@
     "immutable": "^3.8.2",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
+    "react-burger-menu": "^2.5.2",
     "react-data-grid": "^4.0.8",
     "react-data-grid-addons": "^4.0.8",
     "react-dom": "^16.5.2",

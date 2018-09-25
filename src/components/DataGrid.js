@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {getDataDb} from '../services/api';
-
+import RegistroCorredor from '../containers/corredor/registro/RegistroCorredor';
 
 //hoja de estilo
 
@@ -187,11 +187,20 @@ class DataGrid extends Component {
       const rowText = this.state.selectedRows.length === 1 ? 'Fila' : 'Filas';
         
         return (
-   <div><span>{this.state.selectedRows.length} {rowText} seleccionada</span>  
+    <div><span>{this.state.selectedRows.length} {rowText} seleccionada</span>  
               
               <a className="nav-link" href="#/corredor/registro">
                     <i className="nav-icon icon-pencil"></i>Registrar Corredor
                 </a>
+
+                <div id="outer-container">
+                <RegistroCorredor/>
+                <main id="page-wrap">
+                    .
+                    .
+                    .
+                </main>
+                </div>
         <ReactDataGrid
         scrollToRowIndex={this.paginaNumber}
         onGridSort={this.handleGridSort}
