@@ -1,5 +1,5 @@
 import React, { Component }         from 'react';
-import DataGridPolizaEnsoso from '../../components/DataGridPolizaEnsoso';
+import DataGridPolizaEndoso from '../../components/DataGridPolizaEndoso';
 
 //hoja de estilo
 import '../../styles/style1.css'
@@ -12,7 +12,7 @@ class PolizaEndoso extends Component {
     return (
       <div className="app">
       <h1>Póliza y Endoso</h1>
-      <DataGridPolizaEnsoso/>
+      <DataGridPolizaEndoso/>
       </div>
     );
   }

@@ -35,7 +35,7 @@ class iconDocFormater extends React.Component {
 
 
 const { Toolbar, Data: { Selectors } } = require('react-data-grid-addons')
-class DataGridPolizaEnsoso extends Component {
+class DataGridPolizaEndoso extends Component {
   constructor(props, context) {
     super(props, context);
     this.paginaNumber = 0;
@@ -214,4 +214,4 @@ class DataGridPolizaEnsoso extends Component {
 
   }
 }
-export default DataGridPolizaEnsoso;
+export default DataGridPolizaEndoso;
