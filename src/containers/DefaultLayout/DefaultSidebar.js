@@ -7,7 +7,7 @@ class DefaultSidebar extends Component {
             <div className="sidebar-nav ps scrollbar-container ps--active-y">
                 <ul className="nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="#/home">
+                        <a className="nav-link" href="#/ArchivoDigital">
                             <i className="nav-icon icon-drop"></i>Archivos Digital
                         </a>
                     </li>
