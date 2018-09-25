@@ -12,7 +12,7 @@ class DefaultSidebar extends Component {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#/">
+                        <a class="nav-link" href="#/Mantenedor">
                             <i class="nav-icon icon-pencil"></i>Mantenedor
                         </a>
                     </li>

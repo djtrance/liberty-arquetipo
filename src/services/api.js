@@ -17,3 +17,11 @@ export function postPost({ title, body }) {
         }
     })
 }
+export function getDataDb(parametro){
+    var bodyFormData = new FormData();
+    bodyFormData.set('lista' , parametro);
+    return axios({
+        method: 'post',
+        url : "http://saltor.cl/test/liberty/mock/",
+        data: bodyFormData})
+}   
