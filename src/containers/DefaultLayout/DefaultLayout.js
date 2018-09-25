@@ -1,6 +1,6 @@
 import React, { Component }         from 'react';
 import { Redirect, Route, Switch }  from 'react-router-dom';
-import { Container, Nav, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Media } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 //hoja de estilo
 import '../../styles/style1.css'
@@ -19,7 +19,7 @@ class DefaultLayout extends Component {
 
         <div className="app-header navbar">       
           <a className="navbar-brand">
-            <img src={{logo}} width="89" height="25" alt="Liberty Seguros | Chile" className="navbar-brand-full"/>
+            <img src="https://www.liberty.cl/imagenes/logo.png" width="150" height="54" alt="Liberty Seguros | Chile" className="navbar-brand-full"/>
           </a>
           <DefaultHeader />
         </div>
