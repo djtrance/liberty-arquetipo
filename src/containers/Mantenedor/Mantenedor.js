@@ -12,6 +12,8 @@ class Mantenedor extends Component {
     return (
       <div className="app">
       <h1>Mantenedor</h1>
+      <div className="span-ref" onClick={this.props.showAside}>Registrar Corredor
+      </div>
       <ReactDataGrid/>
       </div>
     );

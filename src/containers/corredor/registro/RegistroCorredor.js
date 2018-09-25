@@ -293,6 +293,7 @@ class RegistroCorredor extends Component {
      * Registra la información ingresada
     */
     registrarCorredor () {
+        console.log('registro....');
         this.showResultAlert(MESSAGES.TIPO.SUCCESS, MESSAGES.CORREDOR.REGISTRO.EXITO);
     }
 
@@ -307,7 +308,7 @@ class RegistroCorredor extends Component {
         // TODO: Eliminar el style= del h2
         return (
             <div className="container">
-                <h2 style={{textAlign: 'center'}}>Registrar Corredor</h2>
+                <h4 style={{textAlign: 'center'}}>Registrar Corredor</h4>
 
                 <form>
                     <div className="form-group">
@@ -374,13 +375,13 @@ class RegistroCorredor extends Component {
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="exampleFormControlFile1">Autorización</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+                        <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="comment">Comentarios</label>
-                        <textarea class="form-control" rows="4" id="comment"></textarea>
+                        <textarea className="form-control" rows="4" id="comment"></textarea>
                     </div>
                     { this.state.resultAlert.show ? <Alert alert={this.state.resultAlert}/> : null }
                     <div className="form-row">
