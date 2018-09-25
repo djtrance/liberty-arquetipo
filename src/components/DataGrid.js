@@ -189,7 +189,9 @@ class DataGrid extends Component {
         return (
    <div><span>{this.state.selectedRows.length} {rowText} seleccionada</span>  
               
-
+              <a className="nav-link" href="#/corredor/registro">
+                    <i className="nav-icon icon-pencil"></i>Registrar Corredor
+                </a>
         <ReactDataGrid
         scrollToRowIndex={this.paginaNumber}
         onGridSort={this.handleGridSort}
