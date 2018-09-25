@@ -16,11 +16,6 @@ class DefaultSidebar extends Component {
                             <i className="nav-icon icon-pencil"></i>Mantenedor
                         </a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#/corredor">
-                            <i className="nav-icon icon-pencil"></i>Corredor
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
