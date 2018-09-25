@@ -394,6 +394,7 @@ class RegistroCorredor extends Component {
                         </div>
                     </div>
                 </form>
+                <br/>
             </div>
         );
     }
