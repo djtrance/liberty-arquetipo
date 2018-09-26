@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import ReactDataGrid from 'react-data-grid';
-import { getDataDb } from '../services/api';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//hoja de estilo
-
-import './../styles/style1.css'
-import PropTypes from 'prop-types';
-// Custom Formatter component
+import ReactDataGrid        from 'react-data-grid';
+import { getDataDb }        from '../../../services/api';
+import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome';
+import PropTypes            from 'prop-types';
+import '../../../styles/style1.css';
 
 class iconDocFormater extends React.Component {
   static propTypes = {
@@ -18,24 +15,20 @@ class iconDocFormater extends React.Component {
     var icono = "";
     if (percentComplete === "pdf") {
       this.icono = 'file-pdf';
-    }
-    else {
+    }else {
       this.icono = 'square';
     }
 
     return (
       <div>
-        <FontAwesomeIcon icon={this.icono} />
-
+        <FontAwesomeIcon icon={this.icono}/>
       </div>
     );
   }
 }
 
-
-
 const { Toolbar, Data: { Selectors } } = require('react-data-grid-addons')
-class DataGridPolizaEndoso extends Component {
+class DataGridHistorico extends Component {
   constructor(props, context) {
     super(props, context);
     this.paginaNumber = 0;
@@ -88,7 +81,13 @@ class DataGridPolizaEndoso extends Component {
       }
     ];
 
-    this.state = { rows: this.getDatos(), filters: {}, sortColumn: null, sortDirection: null, selectedRows: [] };
+    this.state = {
+      rows:           this.getDatos(),
+      filters:        {},
+      sortColumn:     null,
+      sortDirection:  null,
+      selectedRows:   []
+    };
   }
 
   getRandomDate = (start, end) => {
@@ -103,15 +102,11 @@ class DataGridPolizaEndoso extends Component {
           posts: res.data,
           loading: false,
         });
-        console.log("respueta servicio");
-        console.log(res);
+        
         if (res.data.estatus.codigo === '2') {
           rows = (res.data.respuesta);
-          console.log("data ");
-          console.log(rows);
           this.setState({ 'rows': rows });
         }
-
       })
       .catch((err) => console.log(err));
     return rows;
@@ -138,7 +133,7 @@ class DataGridPolizaEndoso extends Component {
     let newFilters = Object.assign({}, this.state.filters);
     if (filter.filterTerm) {
       newFilters[filter.column.key] = filter;
-    } else {
+    }else{
       delete newFilters[filter.column.key];
     }
 
@@ -157,17 +152,18 @@ class DataGridPolizaEndoso extends Component {
 
     if ((this.paginaNumber - 10) < 0) {
       this.paginaNumber = 0;
-    }
-    else {
+    }else{
       this.paginaNumber = this.paginaNumber - 10;
     }
-    console.log(this.state);
+    
     this.setState({});
   }
+
   next10 = () => {
     this.paginaNumber = this.paginaNumber + 10;
     this.setState({});
   }
+
   enableFilter = () => {
     this.filterState = !this.filterState;
   }
@@ -177,41 +173,39 @@ class DataGridPolizaEndoso extends Component {
 
     return (
       <div>
-
         <span>{this.state.selectedRows.length} {rowText} seleccionada</span>
         <ReactDataGrid
-          scrollToRowIndex={this.paginaNumber}
-          onGridSort={this.handleGridSort}
-          enableRowSelect="multi"
-          enableCellSelect={true}
-          columns={this._columns}
-          rowGetter={this.rowGetter}
-          rowsCount={this.getSize()}
-          minHeight={300}
-          enableFilter={true}
-          toolbar={
-            <Toolbar enableFilter={true} filterRowsButtonText="Habilitar Filtros">
-            </Toolbar>
-
+          scrollToRowIndex  = {this.paginaNumber}
+          onGridSort        = {this.handleGridSort}
+          enableRowSelect   = "multi"
+          enableCellSelect  = {true}
+          columns           = {this._columns}
+          rowGetter         = {this.rowGetter}
+          rowsCount         = {this.getSize()}
+          minHeight         = {300}
+          enableFilter      = {true}
+          toolbar           = {
+            <Toolbar enableFilter={true} filterRowsButtonText="Habilitar Filtros"></Toolbar>
           }
-          onAddFilter={this.handleFilterChange}
-          onRowSelect={this.onRowSelect}
-          onClearFilters={this.onClearFilters} />
+          onAddFilter       = {this.handleFilterChange}
+          onRowSelect       = {this.onRowSelect}
+          onClearFilters    = {this.onClearFilters}
+        />
         <div class="mt-1">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            <li class="page-item"><a class="page-link" href="#"><FontAwesomeIcon icon="download" /></a></li>
-            
-            
+            <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+            <li class="page-item"><a class="page-link" href="#">
+              <FontAwesomeIcon icon="download" /></a>
+            </li>
           </ul>
         </div>
       </div>
     );
-
   }
 }
-export default DataGridPolizaEndoso;
+
+export default DataGridHistorico;
