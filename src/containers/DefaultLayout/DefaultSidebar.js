@@ -21,16 +21,26 @@ class DefaultSidebar extends Component {
                             'nav-item selected-menu-option' 
                             : 'nav-item'
                         }
-                        onClick={() => this.setState({ current: CONSTANTS.MENU_OPCIONES.ARCHIVOS })}>
+                        onClick={() => this.setState({
+                            current: CONSTANTS.MENU_OPCIONES.ARCHIVOS,
+                            currentSubOpt: null,
+                            mantOptions: false
+                        })}>
                         <a className="nav-link" href="#/ArchivoDigital">
-                            <FontAwesomeIcon icon="file"/><span class="ml-10px">Archivos Digitales</span>
+                            <FontAwesomeIcon icon="file"/>
+                            <span class="ml-10px">Archivos Digitales</span>
                         </a>
                     </li>
-                    <li className="nav-item pointer" 
-                        onClick={() => this.setState({ 
+                    <li onClick={() => this.setState({ 
                             mantOptions: !this.state.mantOptions,
-                            current: CONSTANTS.MENU_OPCIONES.MANTENEDOR
-                        })}>
+                            current: !this.state.mantOptions ? CONSTANTS.MENU_OPCIONES.MANTENEDOR : null,
+                            currentSubOpt: null
+                        })}
+                        className={
+                            this.state.current === CONSTANTS.MENU_OPCIONES.MANTENEDOR ? 
+                            'nav-item pointer selected-menu-option' 
+                            : 'nav-item pointer'
+                        }>
                         <a className="nav-link" href={null}>
                         <FontAwesomeIcon icon="cog" /><span class="ml-10px">Mantenedor</span>
                         </a>
@@ -38,24 +48,30 @@ class DefaultSidebar extends Component {
                     {
                         this.state.mantOptions ?
                             <div>
-                                <li onClick={() => this.setState({ current: CONSTANTS.MENU_OPCIONES.CONSULTA_CORREDOR })}
+                                <li onClick={() => this.setState(
+                                        { currentSubOpt: CONSTANTS.MENU_OPCIONES.CONSULTA_CORREDOR }
+                                    )}
                                     className={
-                                        this.state.current === CONSTANTS.MENU_OPCIONES.CONSULTA_CORREDOR ? 
-                                        'nav-item selected-menu-option' 
+                                        this.state.currentSubOpt === CONSTANTS.MENU_OPCIONES.CONSULTA_CORREDOR ? 
+                                        'nav-item selected-menu-suboption' 
                                         : 'nav-item'
                                     }>
                                     <a className="nav-link" href="#/Mantenedor">
-                                        <FontAwesomeIcon className="ml-15px" icon="search" /><span class="ml-10px">Consulta Corredor</span>
+                                        <FontAwesomeIcon className="ml-15px" icon="search" />
+                                        <span class="ml-10px">Consulta Corredor</span>
                                     </a>
                                 </li>
-                                <li onClick={() => this.setState({ current: CONSTANTS.MENU_OPCIONES.REGISTRO_CORREDOR })}
+                                <li onClick={() => this.setState(
+                                        { currentSubOpt: CONSTANTS.MENU_OPCIONES.REGISTRO_CORREDOR }
+                                    )}
                                     className={
-                                        this.state.current === CONSTANTS.MENU_OPCIONES.REGISTRO_CORREDOR ? 
-                                        'nav-item selected-menu-option' 
+                                        this.state.currentSubOpt === CONSTANTS.MENU_OPCIONES.REGISTRO_CORREDOR ? 
+                                        'nav-item selected-menu-suboption' 
                                         : 'nav-item'
                                     }>
                                     <a className="nav-link" href="#/mantenedor/registro">
-                                        <FontAwesomeIcon className="ml-15px" icon="plus" /><span class="ml-10px">Registro Corredor</span>
+                                        <FontAwesomeIcon className="ml-15px" icon="plus" />
+                                        <span class="ml-10px">Registro Corredor</span>
                                     </a>
                                 </li>
                             </div>

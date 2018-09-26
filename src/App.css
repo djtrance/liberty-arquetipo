@@ -29,6 +29,10 @@
 }
 
 .selected-menu-option {
+  background-color: #AEB6BF;
+}
+
+.selected-menu-suboption {
   background-color: #5D6D7E;
 }
 
