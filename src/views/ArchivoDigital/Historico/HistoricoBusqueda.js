@@ -43,6 +43,11 @@ class HistoricoBusqueda extends Component {
                     <Card>
                         <CardHeader>
                             <strong>Histórica de Pólizas y Endosos</strong>
+                            <div className="card-header-actions">
+                                <Button block color="link" className="text-left m-0 p-0" onClick={this.toggle} style={{ marginBottom: '1rem' }}>
+                                    <FontAwesomeIcon icon="AngleDown"/>
+                                </Button>
+                            </div>
                         </CardHeader>
                         <CardBody>
                             <Form action="" method="post" encType="multipart/form-data" className="form-horizontal">
