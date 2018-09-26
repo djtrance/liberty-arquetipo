@@ -17,6 +17,7 @@ class DefaultSidebar extends Component {
     setOption(option){
         this.setState({
             option:         option,
+            suboption:      null,
             showOpcMant:    this.opcionMantenedor(option) ? !this.state.showOpcMant : false
         });
     }
