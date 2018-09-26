@@ -1,3 +1,3 @@
-import HistoricoBusqueda from './Historico';
+import LayoutHistorico from './Historico';
 
-export { HistoricoBusqueda }
+export { LayoutHistorico }

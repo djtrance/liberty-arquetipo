@@ -1,3 +1,3 @@
-import HistoricoBusqueda from './HistoricoBusqueda';
+import LayoutHistorico from './LayoutHistorico';
 
-export default HistoricoBusqueda;
+export default LayoutHistorico;

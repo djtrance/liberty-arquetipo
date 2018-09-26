@@ -7,7 +7,7 @@ import '../../styles/style1.css'
 
 // routes config
 import routes         from '../../routes';
-import logo           from '../../styles/img/brand/logo.png'
+import logo           from '../../styles/img/brand/logo.png';
 import DefaultHeader  from './DefaultHeader';
 import DefaultSidebar from './DefaultSidebar';
 import DefaultFooter  from './DefaultFooter';
