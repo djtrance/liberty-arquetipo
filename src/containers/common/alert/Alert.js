@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MESSAGES from '../../../constants/message';
 
-class RegistroCorredor extends Component {
+class Alert extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,4 +35,4 @@ class RegistroCorredor extends Component {
         );
     }
 }
-export default RegistroCorredor;
+export default Alert;
