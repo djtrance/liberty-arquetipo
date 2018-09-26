@@ -17,13 +17,7 @@ class DefaultHeader extends Component {
       <React.Fragment>
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink href="/">Link 1</NavLink>
-          </NavItem>
-          <NavItem className="px-3">
-            <NavLink href="#/users">Link 2</NavLink>
-          </NavItem>
-          <NavItem className="px-3">
-            <NavLink href="#">link 3</NavLink>
+            <NavLink href="#">Salir</NavLink>
           </NavItem>
         </Nav>
       </React.Fragment>

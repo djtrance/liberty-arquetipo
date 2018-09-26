@@ -11,7 +11,7 @@ class Mantenedor extends Component {
   render() {
     return (
       <div className="app">
-      <h1>Mantenedor</h1>
+        <h4 className="module-title">Consulta Corredor</h4>
         <span className="span-ref" style={{textAlign: 'right'}} onClick={this.props.showAside}><FontAwesomeIcon icon="plus" />  Registrar Corredor</span>
         <ReactDataGrid/>
       </div>

@@ -13,7 +13,7 @@ class Aside extends React.Component {
         <Menu right
             isOpen={ this.props.open }
             onStateChange={() => this.props.handleStateChange()}>
-            <RegistroCorredor />
+            <RegistroCorredor isAside={true} />
         </Menu>
       )
     }

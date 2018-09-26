@@ -308,13 +308,14 @@ class RegistroCorredor extends Component {
         // TODO: Eliminar el style= del h2
         return (
             <div className="container">
-                <h4 style={{textAlign: 'center'}}>Registrar Corredor</h4>
-
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Código</label>
-                        <input className="form-control" name="codigoCorredor" 
-                            value={this.state.codigoCorredor} onChange={this.handleChange} />
+                <h4 className="module-title">Registro Corredor</h4>
+                <form className={this.props.isAside ? "" : "form-65"}>
+                    <div className="form-row">
+                        <div className="col-md-6 form-group">
+                            <label htmlFor="exampleInputEmail1">Código</label>
+                            <input className="form-control" name="codigoCorredor" 
+                                value={this.state.codigoCorredor} onChange={this.handleChange} />
+                        </div>
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Nombre</label>
