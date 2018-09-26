@@ -39,7 +39,6 @@ class FilterHistorico extends Component {
   render() {
     return (
         <div className="animated fadeIn">
-            <br/>
             <Row>
                 <Col xs="12" md="12">
                     <h4 className="border-bottom">Histórica de Pólizas y Endosos </h4>
@@ -47,8 +46,7 @@ class FilterHistorico extends Component {
                 <Col xs="12" md="12">
                     <Card>
                         <CardHeader>
-                            <FontAwesomeIcon icon="filter"/>&nbsp;
-                            <strong>Filtros de búsquedas</strong>
+                            <FontAwesomeIcon icon="filter"/> Filtros de búsquedas
                             <div className="card-header-actions">
                                 <Button block color="link" className="text-left m-0 p-0" onClick={this.toggle} style={{ marginBottom: '1rem' }}>
                                     <FontAwesomeIcon icon= { this.state.collapse ? 'angle-up' : 'angle-down'} />

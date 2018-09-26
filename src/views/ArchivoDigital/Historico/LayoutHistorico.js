@@ -13,12 +13,11 @@ class LayoutHistorico extends Component {
   }
 
     render() {
-        return (
-            <div className="app">
-                <FilterHistorico/>
-                <DataGridFilterHistorico/>
-                <DataGridHistorico/>
-            </div>
+      return (
+        <div className="app">
+            <FilterHistorico/>
+            <DataGridFilterHistorico/>
+        </div>
     );
   }
 }
