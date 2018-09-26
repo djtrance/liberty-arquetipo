@@ -118,6 +118,9 @@ class DataGridFilterHistorico extends Component {
                       <PaginationItem>
                         <PaginationLink next tag="button"></PaginationLink>
                       </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink tag="button"><FontAwesomeIcon icon="download" /></PaginationLink>
+                      </PaginationItem>
                     </Pagination>
                   </nav>
                 </CardBody>
