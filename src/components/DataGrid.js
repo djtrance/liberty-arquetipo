@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import ReactDataGrid from 'react-data-grid';
 import { getDataDb } from '../services/api';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Badge } from 'reactstrap';
 //hoja de estilo
 
 import './../styles/style1.css'
+import 'bootstrap/dist/css/bootstrap.css';
+
 import PropTypes from 'prop-types';
 // Custom Formatter component
-
+require('bootstrap/dist/css/bootstrap.css');
 class iconDocFormater extends React.Component {
   static propTypes = {
     value: PropTypes.string.isRequired
@@ -32,28 +35,53 @@ class iconDocFormater extends React.Component {
   }
 }
 
-class linkFormater extends React.Component {
+class estadoFormater extends React.Component {
   static propTypes = {
     value: PropTypes.string.isRequired
   };
 
   render() {
+    const value = this.props.value;
+    if (value === "Activo") {
+      this.estatus = "success";
+    }
+    else {
+      this.estatus = "danger";
+    }
+    return (
+      <div>
+        <Badge className="mr-1" color={this.estatus}>{value}</Badge>
+      </div>
+    );
+  };
+}
+class linkFormater extends React.Component {
+  static propTypes = {
+    value: PropTypes.string.isRequired
+  };
+
+  toggle(i) {
+    const newArray = this.state.dropdownOpen.map((element, index) => { return (index === i ? !element : false); });
+    this.setState({
+      dropdownOpen: newArray,
+    });
+  }
+  render() {
     const valorEntrada = this.props.value;
+
 
     if (valorEntrada === "Ver") {
       this.link = '#';
-      console.log("valor -> "+ valorEntrada);
+      console.log("valor -> " + valorEntrada);
     }
     else {
       this.icono = '#';
     }
 
     return (
-      <div>
-        <a href={this.link}>{valorEntrada}</a>
-
-
-      </div>
+    <div>
+      <a href="#">{valorEntrada}</a>
+    </div>
     );
   }
 }
@@ -108,14 +136,15 @@ class DataGrid extends Component {
         key: 'estado',
         name: 'Estado',
         filterable: true,
-        sortable: true
+        sortable: true,
+        formatter: estadoFormater
       },
       {
         key: 'historial',
         name: 'Historial',
         filterable: true,
         sortable: true,
-        formatter:linkFormater
+        formatter: linkFormater
       }
     ];
 
@@ -203,6 +232,10 @@ class DataGrid extends Component {
     this.filterState = !this.filterState;
   }
 
+  refresh = () => {
+    this.setState({ DropdownButton: true });
+  }
+
   render() {
     const rowText = this.state.selectedRows.length === 1 ? 'Fila' : 'Filas';
 
@@ -235,8 +268,8 @@ class DataGrid extends Component {
             <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
             <li class="page-item"><a class="page-link" href="#"><FontAwesomeIcon icon="download" /></a></li>
-            
-            
+
+
           </ul>
         </div>
       </div>
