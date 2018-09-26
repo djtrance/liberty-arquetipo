@@ -19,7 +19,26 @@
   width: 50%;
 }
 
+.container-fluid {
+  margin-top: 20px;
+}
+
+.module-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.selected-menu-option {
+  background-color: #5D6D7E;
+}
+
 /* FORMULARIO: CONTROLADORES */
+.form-65 {
+  width: 65%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .selectable-item {
   padding: 10px;
   cursor: pointer !important;
@@ -48,6 +67,10 @@
 
 .ml-10px {
   margin-left: 10px;
+}
+
+.ml-15px {
+  margin-left: 15px;
 }
 
 .btn-ajustable {
@@ -141,4 +164,8 @@
 
 .bm-burger-button {
   display: none;
+}
+
+.pointer {
+  cursor: pointer;
 }

@@ -8047,9 +8047,9 @@ canvas {
     flex: 1;
     overflow-x: hidden;
     overflow-y: auto;
-    width: 200px; }
+    width: 250px; }
   .sidebar .nav {
-    width: 200px;
+    width: 2050px;
     flex-direction: column;
     min-height: 100%;
     padding: 0; }
