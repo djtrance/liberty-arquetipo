@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import ReactDataGrid from 'react-data-grid';
 import { getDataDb } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Badge } from 'reactstrap';
+import bootstrap from 'react-bootstrap';
+import { 
+  Popover, 
+  PopoverHeader, 
+  PopoverBody,
+  Button
+} from 'reactstrap';
 //hoja de estilo
 
 import './../styles/style1.css'
@@ -36,21 +42,50 @@ class iconDocFormater extends React.Component {
 }
 
 class estadoFormater extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      popoverOpen: false,
+    };
+  }
   static propTypes = {
     value: PropTypes.string.isRequired
   };
 
+
+  toggle() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen,
+    });
+  }
   render() {
     const value = this.props.value;
+    const id = this.props.dependentValues.id; 
     if (value === "Activo") {
       this.estatus = "success";
+      
     }
     else {
       this.estatus = "danger";
     }
+    this.className="label label-"+this.estatus;
     return (
       <div>
-        <Badge className="mr-1" color={this.estatus}>{value}</Badge>
+        <Button size="sm" className={this.className} color={this.estatus} id={'Popover-' + id} onClick={this.toggle}>
+        {value}
+        </Button>
+        <Popover  isOpen={this.state.popoverOpen} target={'Popover-' + id} toggle={this.toggle}>
+          <PopoverHeader>Cambiar Estado</PopoverHeader>
+          <PopoverBody>En la pantalla actual puede cambiar el estado.<br/>
+            Estado actual: <p color={this.estatus}>{value}</p>
+          <input type='radio' data-toggle="toggle" data-on="Enabled" data-off="Disabled"/>
+          <input type='radio' id={"toggle-two"}/>
+          <input type="checkbox" checked data-toggle="toggle"/>
+
+          </PopoverBody>
+        </Popover>
       </div>
     );
   };
@@ -72,7 +107,8 @@ class linkFormater extends React.Component {
 
     if (valorEntrada === "Ver") {
       this.link = '#';
-      console.log("valor -> " + valorEntrada);
+      console.log("valor -> " + this.props);
+      console.log(this.props);
     }
     else {
       this.icono = '#';
@@ -130,21 +166,24 @@ class DataGrid extends Component {
         name: 'Contrato',
         filterable: true,
         sortable: true,
-        formatter: iconDocFormater
+        formatter: iconDocFormater,
+        getRowMetaData: (row) => row
       },
       {
         key: 'estado',
         name: 'Estado',
         filterable: true,
         sortable: true,
-        formatter: estadoFormater
+        formatter: estadoFormater,
+        getRowMetaData: (row) => row
       },
       {
         key: 'historial',
         name: 'Historial',
         filterable: true,
         sortable: true,
-        formatter: linkFormater
+        formatter: linkFormater,
+        getRowMetaData: (row) => row
       }
     ];
 
@@ -262,11 +301,11 @@ class DataGrid extends Component {
           onClearFilters={this.onClearFilters} />
         <div class="mt-1">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
             <li class="page-item"><a class="page-link" href="#"><FontAwesomeIcon icon="download" /></a></li>
 
 
