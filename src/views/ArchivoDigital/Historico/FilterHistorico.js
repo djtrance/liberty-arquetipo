@@ -144,7 +144,7 @@ class FilterHistorico extends Component {
                                 </Form>
                             </CardBody>
                             <CardFooter>
-                                <FormGroup row>
+                                <FormGroup row className="without-margin">
                                     <Col xs="6" md="6" className="text-right">
                                         <Button type="reset" size="md" color="secondary">
                                             <FontAwesomeIcon icon="eraser"/>&nbsp;

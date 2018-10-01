@@ -2,15 +2,19 @@ import React, { Component }         from 'react';
 import { Collapse, Button, Well }   from 'react-bootstrap';
 import { FontAwesomeIcon }          from '@fortawesome/react-fontawesome';
 import CONSTANTS                    from '../../constants/constants';
+import classNames                   from 'classnames';
 
 class DefaultSidebar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            option:         null,
-            suboption:      null,
-            showOpcMant:    false
+            option:                 null,
+            suboption:              null,
+            showOpcMant:            false,
+            archivoCollapsed:       true,
+            mantenedorCollapsed:    true,
+            firmaDigitalCollapse:   true
         }
     }
 
@@ -44,48 +48,79 @@ class DefaultSidebar extends Component {
         return suboption === this.state.suboption ? 'nav-item selected-menu-suboption' : 'nav-item';
     }
 
+    collapseMenu(){
+        this.setState({
+            archivoCollapsed:       true,
+            mantenedorCollapsed:    true,
+            firmaDigitalCollapse:   true
+        });
+    }
+
     render() {
     return (
         <div className="sidebar">
             <div className="sidebar-nav ps scrollbar-container ps--active-y">
                 <ul className="nav">
-                    <li className={this.getOptionClass(CONSTANTS.MENU_OPCIONES.ARCHIVOS)}
-                        onClick={() => this.setOption(CONSTANTS.MENU_OPCIONES.ARCHIVOS)}>
-                        <a className="nav-link" href="#/ArchivoDigital">
-                            <FontAwesomeIcon icon="file"/>
+                    
+                    <li id="liArchivoDigital" className={classNames({ 'active selected-menu-suboption': !this.state.archivoCollapsed })}>
+                        <a  href="#/ArchivoDigital"
+                            className="nav-link"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                this.collapseMenu();
+                                this.setState({ archivoCollapsed: !this.state.archivoCollapsed });
+                                return false;
+                            }} >
+                            <FontAwesomeIcon icon="briefcase"/>
                             <span class="ml-10px">Archivos Digitales</span>
                         </a>
+                        <ul className={ classNames({ 'pointer without-padding': true,
+                                        collapse: this.state.archivoCollapsed
+                            })}>
+                            <li className="nav-item">
+                                <a  href="#/ArchivosHistoricos"
+                                    className="sub-option">
+                                    <FontAwesomeIcon icon="list-ol"/> Disponibles
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a  href="#/ArchivosHistoricos"
+                                    className="sub-option">
+                                    <FontAwesomeIcon icon="history"/> Históricos
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li onClick={() => this.setOption(CONSTANTS.MENU_OPCIONES.MANTENEDOR)}
-                        className={this.getOptionClass(CONSTANTS.MENU_OPCIONES.MANTENEDOR)}>
-                        <a className="nav-link" href={null}>
-                        <FontAwesomeIcon icon="cog" /><span class="ml-10px">Mantenedor</span>
+
+                    <li id="liMantenedor" className={classNames({ 'active selected-menu-suboption': !this.state.mantenedorCollapsed })}>
+                        <a  href=""
+                            className="nav-link"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                this.collapseMenu();
+                                this.setState({ mantenedorCollapsed:    !this.state.mantenedorCollapsed });
+                                return false;
+                            }} >
+                            <FontAwesomeIcon icon="cog"/>
+                            <span class="ml-10px">Mantenedor</span>
                         </a>
+                        <ul className={ classNames({ 'pointer without-padding': true,
+                                        collapse: this.state.mantenedorCollapsed
+                            })}>
+                            <li className="nav-item">
+                                <a  href="#/Mantenedor"
+                                    className="sub-option">
+                                    <FontAwesomeIcon icon="search"/> Consulta Corredor
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a  href="#/mantenedor/registro"
+                                    className="sub-option">
+                                    <FontAwesomeIcon icon="plus-circle"/> Nuevo Corredor
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    {
-                        this.state.showOpcMant ?
-                            <div>
-                                <li onClick={() => this.setSubOption(
-                                        CONSTANTS.MENU_OPCIONES.CONSULTA_CORREDOR
-                                    )}
-                                    className={this.getSubOptionClass(CONSTANTS.MENU_OPCIONES.CONSULTA_CORREDOR)}>
-                                    <a className="nav-link" href="#/Mantenedor">
-                                        <FontAwesomeIcon className="ml-15px" icon="search" />
-                                        <span class="ml-10px">Consulta Corredor</span>
-                                    </a>
-                                </li>
-                                <li onClick={() => this.setSubOption(
-                                        CONSTANTS.MENU_OPCIONES.REGISTRO_CORREDOR
-                                    )}
-                                    className={this.getSubOptionClass(CONSTANTS.MENU_OPCIONES.REGISTRO_CORREDOR)}>
-                                    <a className="nav-link" href="#/mantenedor/registro">
-                                        <FontAwesomeIcon className="ml-15px" icon="plus" />
-                                        <span class="ml-10px">Registro Corredor</span>
-                                    </a>
-                                </li>
-                            </div>
-                        : null 
-                    }
                 </ul>
             </div>
         </div>

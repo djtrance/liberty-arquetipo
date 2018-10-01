@@ -1,3 +1,3 @@
-import LayoutHistorico from './Historico';
+import LayoutHistorico  from './Historico';
 
 export { LayoutHistorico }
