@@ -13,46 +13,14 @@ class DefaultSidebar extends Component {
             suboption:              null,
             showOpcMant:            false,
             archivoCollapsed:       true,
-            mantenedorCollapsed:    true,
-            firmaDigitalCollapse:   true
+            mantenedorCollapsed:    true
         }
-    }
-
-    setOption(option){
-        this.setState({
-            option:         option,
-            suboption:      null,
-            showOpcMant:    this.opcionMantenedor(option) ? !this.state.showOpcMant : false
-        });
-    }
-
-    setSubOption(suboption){
-        this.setState({
-            suboption:      suboption
-        });
-    }
-
-    opcionMantenedor (option) {
-        return option === CONSTANTS.MENU_OPCIONES.MANTENEDOR ? true : false;
-    }
-
-    getOptionClass(option){
-        var className = 'nav-item pointer';
-        if (this.opcionMantenedor(option) && !this.state.showOpcMant) {
-            return className;
-        }
-        return option === this.state.option ? className + ' selected-menu-option' : className;
-    }
-
-    getSubOptionClass(suboption){
-        return suboption === this.state.suboption ? 'nav-item selected-menu-suboption' : 'nav-item';
     }
 
     collapseMenu(){
         this.setState({
             archivoCollapsed:       true,
-            mantenedorCollapsed:    true,
-            firmaDigitalCollapse:   true
+            mantenedorCollapsed:    true
         });
     }
 

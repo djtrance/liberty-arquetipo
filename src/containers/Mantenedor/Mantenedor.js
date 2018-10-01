@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import ReactDataGrid from '../../components/DataGrid';
-
-//hoja de estilo
 import '../../styles/style1.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  Badge,
   Button,
   Card,
   CardBody,
   CardHeader,
   Col,
   Collapse,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  Row,
-  Table
+  Row
 } from 'reactstrap';
-
 
 class Mantenedor extends Component {
   constructor(props) {
