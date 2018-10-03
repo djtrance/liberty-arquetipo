@@ -1,11 +1,11 @@
 import React, { Component }         from 'react';
 import { Redirect, Route, Switch }  from 'react-router-dom';
 import { Container }                from 'reactstrap';
-import FilterHistorico              from './FilterHistorico';
-import DataGridFilterHistorico      from './DataGridFilterHistorico';
+import DataGridDisponible           from './DataGridDisponible';
+import DataGridHistorico            from './DataGridHistorico';
 import '../../../styles/style1.css';
 
-class LayoutHistorico extends Component {
+class LayoutDisponible extends Component {
 
   constructor (props) {
     super(props)
@@ -14,10 +14,10 @@ class LayoutHistorico extends Component {
     render() {
       return (
         <div className="app">
-            <FilterHistorico/>
+            <DataGridHistorico/>
         </div>
     );
   }
 }
 
-export default LayoutHistorico;
+export default LayoutDisponible;

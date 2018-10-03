@@ -18,7 +18,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 0.875rem;
+  font-size: 15px !important;
   font-weight: 400;
   line-height: 1.5;
   color: #23282c;
@@ -64,7 +64,8 @@ ol,
 ul,
 dl {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  list-style-type: none }
 
 ol ol,
 ul ul,
@@ -171,7 +172,9 @@ th {
 
 label {
   display: inline-block;
-  margin-bottom: 0.5rem; }
+  margin: 0;
+  font-weight: bold;
+  font-size: 14px;}
 
 button {
   border-radius: 0; }
@@ -1229,8 +1232,8 @@ pre {
   display: block;
   width: 100%;
   height: calc(2.0625rem + 2px);
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
+  padding: 0.375rem 0.55rem !important;
+  font-size: 14px !important;
   line-height: 1.5;
   color: #5c6873;
   background-color: #fff;
@@ -1580,7 +1583,7 @@ textarea.form-control {
   user-select: none;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 0.800rem !important;
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -3055,7 +3058,8 @@ input[type="button"].btn-block {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1.25rem; }
+  padding: 1.25rem;
+  background-color: #F2F4F4 !important;}
 
 .card-title {
   margin-bottom: 0.75rem; }
@@ -3076,7 +3080,7 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: #f0f3f5;
+  background-color: #EAECEE !important;
   border-bottom: 1px solid #c8ced3; }
   .card-header:first-child {
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0; }
@@ -3085,7 +3089,7 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 0.75rem 1.25rem;
-  background-color: #f0f3f5;
+  background-color: #F4F6F6 !important;
   border-top: 1px solid #c8ced3; }
   .card-footer:last-child {
     border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px); }
@@ -3257,19 +3261,20 @@ input[type="button"].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #20a8d8;
-  background-color: #fff;
-  border: 1px solid #c8ced3; }
+  color: #20a8d8 !important;
+  background-color: #fff !important;
+  border: 1px solid #c8ced3 !important; }
   .page-link:hover {
     z-index: 2;
-    color: #167495;
+    color: #167495 !important;
     text-decoration: none;
-    background-color: #e4e7ea;
-    border-color: #c8ced3; }
+    background-color: #e4e7ea !important;
+    border-color: #c8ced3 !important; }
   .page-link:focus {
     z-index: 2;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(32, 168, 216, 0.25); }
+    color: #fff;
+    box-shadow: 0 0 0 0.2rem rgba(32, 168, 216, 0.25) !important; }
   .page-link:not(:disabled):not(.disabled) {
     cursor: pointer; }
 
@@ -3284,16 +3289,16 @@ input[type="button"].btn-block {
 
 .page-item.active .page-link {
   z-index: 1;
-  color: #fff;
-  background-color: #20a8d8;
-  border-color: #20a8d8; }
+  color: #fff !important;
+  background-color: #20a8d8 !important;
+  border-color: #20a8d8 !important; }
 
 .page-item.disabled .page-link {
-  color: #73818f;
+  color: #73818f !important;
   pointer-events: none;
   cursor: auto;
-  background-color: #fff;
-  border-color: #c8ced3; }
+  background-color: #fff !important;
+  border-color: #c8ced3 !important; }
 
 .pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
@@ -8016,7 +8021,7 @@ canvas {
   flex-direction: column;
   padding: 0;
   color: #fff;
-  background: #2f353a; }
+  background: #393b3b; }
   .sidebar .sidebar-close {
     position: absolute;
     right: 0;
@@ -9833,3 +9838,34 @@ html body .app.flex-row.align-items-center {
 .border-bottom {
   border-bottom: 1px solid #c8ced3;
 }
+
+.without-margin{
+  margin: 0 !important;
+}
+
+.without-padding{
+  padding: 0;
+  color: #fff;
+  background-color: #3342447a;
+}
+
+.without-padding > li:hover, li:focus{
+  color: #fff;
+  text-decoration: none;
+  background: #20a8d8;
+}
+
+.sub-option {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  margin: 0 0 0 15px;
+}
+  a.sub-option  {
+    color: #fff;
+    text-decoration: none !important;
+  }
+    a.sub-option:hover, a.sub-option:focus{
+      text-decoration: none !important;
+      color: #fff;
+    }

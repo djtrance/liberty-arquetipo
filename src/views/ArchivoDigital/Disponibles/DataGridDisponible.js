@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import ReactDataGrid        from 'react-data-grid';
+import { getDataDb }        from '../../../services/api';
 import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome';
+import PropTypes            from 'prop-types';
 import {
   Badge,
   Button,
@@ -8,53 +11,52 @@ import {
   CardHeader,
   Col,
   Collapse,
+  Input,
   Pagination,
   PaginationItem,
   PaginationLink,
   Row,
   Table
 } from 'reactstrap';
+import '../../../styles/style1.css';
 
-class DataGridFilterHistorico extends Component {
+class DataGridDisponible extends Component {
   constructor(props) {
     super(props);
 
-    this.toggle     = this.toggle.bind(this);
-    this.toggleFade = this.toggleFade.bind(this);
     this.state      = {
-      collapse: false,
       fadeIn: true,
       timeout: 300
     };
   }
 
-  toggle() {
+  selectAll() {
     this.setState({ collapse: !this.state.collapse });
-  }
-
-  toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
   }
 
   render() {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col>
+          <Col xs="12" md="12">
             <Card>
               <CardHeader>
-                <FontAwesomeIcon icon="list"/> Resultados de búsqueda
+                <FontAwesomeIcon icon="list"/>
                 <div className="card-header-actions">
-                  <Button block color="link" className="text-left m-0 p-0" onClick={this.toggle} style={{ marginBottom: '1rem' }}>
-                      <FontAwesomeIcon icon= { this.state.collapse ? 'angle-up' : 'angle-down'} />
+                  <Button block color="link"
+                          className="text-left m-0 p-0"
+                          onClick={this.toggle}
+                          style={{ marginBottom: '1rem' }}>
                   </Button>
                 </div>
               </CardHeader>
-              <Collapse isOpen={this.state.collapse}>
-                <CardBody>
-                  <Table hover bordered striped responsive size="sm">
-                    <thead>
+              <CardBody>
+                <Table hover bordered striped responsive size="sm">
+                  <thead>
                     <tr>
+                      <th className="checkbox">&nbsp;
+                        <Input className="form-check-input" type="checkbox" id="allCheckbox" name="allCheckbox" value="option1" />
+                      </th>
                       <th>Tipo Movimiento</th>
                       <th>Nro. Póliza</th>
                       <th>Nro. Propuesta</th>
@@ -63,9 +65,12 @@ class DataGridFilterHistorico extends Component {
                       <th>Ramo</th>
                       <th>Convenio</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                  </thead>
+                  <tbody>
                     <tr>
+                      <td>
+                        <Input className="form-check-input allCheckbox" type="checkbox" id="checkbox1" name="checkbox1" value="option1" />
+                      </td>
                       <td>Póliza</td>
                       <td>20302438</td>
                       <td>25386</td>
@@ -75,6 +80,9 @@ class DataGridFilterHistorico extends Component {
                       <td>Cod. / Nombre</td>
                     </tr>
                     <tr>
+                      <td>
+                        <Input className="form-check-input allCheckbox" type="checkbox" id="checkbox2" name="checkbox2" value="option1" />
+                      </td>
                       <td>Endoso</td>
                       <td>20302438</td>
                       <td>23526</td>
@@ -84,6 +92,9 @@ class DataGridFilterHistorico extends Component {
                       <td>Cod. / Nombre</td>
                     </tr>
                     <tr>
+                      <td>
+                        <Input className="form-check-input allCheckbox" type="checkbox" id="checkbox3" name="checkbox3" value="option1" />
+                      </td>
                       <td>Póliza</td>
                       <td>20302438</td>
                       <td>24567</td>
@@ -93,6 +104,9 @@ class DataGridFilterHistorico extends Component {
                       <td>Cod. / Nombre</td>
                     </tr>
                     <tr>
+                      <td>
+                          <Input className="form-check-input allCheckbox" type="checkbox" id="checkbox4" name="checkbox4" value="option1" />
+                      </td>
                       <td>Endoso</td>
                       <td>20302438</td>
                       <td>22970</td>
@@ -101,30 +115,27 @@ class DataGridFilterHistorico extends Component {
                       <td>06 - Vehículos</td>
                       <td>Cod. / Nombre</td>
                     </tr>
-                    </tbody>
-                  </Table>
-                  <nav>
-                    <Pagination>
-                      <PaginationItem>
-                        <PaginationLink previous tag="button"></PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem active>
-                        <PaginationLink tag="button">1</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-                      <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-                      <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink next tag="button"></PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink tag="button"><FontAwesomeIcon icon="download" /></PaginationLink>
-                      </PaginationItem>
-                    </Pagination>
-                  </nav>
-                </CardBody>
-              </Collapse>
+                    <tr>
+                      <td>
+                        <Input className="form-check-input allCheckbox" type="checkbox" id="checkbox5" name="checkbox5" value="option1" />
+                      </td>
+                      <td>Póliza</td>
+                      <td>20302438</td>
+                      <td>21008</td>
+                      <td>1</td>
+                      <td>RUT / Nombre / Razón Social</td>
+                      <td>06 - Vehículos</td>
+                      <td>Cod. / Nombre</td>
+                    </tr>
+                  </tbody>
+                </Table>
+              </CardBody>
             </Card>
+          </Col>
+          <Col xs="12" md="12">
+            <Button color="primary">
+              <FontAwesomeIcon icon="download"/>&nbsp;Descargar
+            </Button>
           </Col>
         </Row>
       </div>
@@ -132,4 +143,4 @@ class DataGridFilterHistorico extends Component {
   }
 }
 
-export default DataGridFilterHistorico;
+export default DataGridDisponible;

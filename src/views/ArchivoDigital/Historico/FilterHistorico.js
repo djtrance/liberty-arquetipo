@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { 
+import {
+    Badge,
     Button,
-    Col,
     Card,
-    CardHeader,
     CardBody,
+    CardHeader,
     CardFooter,
+    Col,
     Collapse,
     Form,
     FormGroup,
     Input,
     Label,
-    Row
+    Pagination,
+    PaginationItem,
+    PaginationLink,
+    Row,
+    Table
 } from 'reactstrap';
 
 class FilterHistorico extends Component {
@@ -21,8 +26,11 @@ class FilterHistorico extends Component {
 
     this.toggle     = this.toggle.bind(this);
     this.toggleFade = this.toggleFade.bind(this);
+    this.btClick   = this.btClick.bind(this);
+
     this.state      = {
       collapse: true,
+      collapseResulset: false,
       fadeIn: true,
       timeout: 300
     };
@@ -34,6 +42,11 @@ class FilterHistorico extends Component {
 
   toggleFade() {
     this.setState((prevState) => { return { fadeIn: !prevState }});
+  }
+
+  btClick(){
+    this.setState({ collapse: !this.state.collapse,
+        collapseResulset: !this.state.collapseResulset});
   }
 
   render() {
@@ -48,7 +61,7 @@ class FilterHistorico extends Component {
                         <CardHeader>
                             <FontAwesomeIcon icon="filter"/> Filtros de búsquedas
                             <div className="card-header-actions">
-                                <Button block color="link" className="text-left m-0 p-0" onClick={this.toggle} style={{ marginBottom: '1rem' }}>
+                                <Button block color="link" className="text-left m-0 p-0" onClick={this.btClick} style={{ marginBottom: '1rem' }}>
                                     <FontAwesomeIcon icon= { this.state.collapse ? 'angle-up' : 'angle-down'} />
                                 </Button>
                             </div>
@@ -144,7 +157,7 @@ class FilterHistorico extends Component {
                                 </Form>
                             </CardBody>
                             <CardFooter>
-                                <FormGroup row>
+                                <FormGroup row className="without-margin">
                                     <Col xs="6" md="6" className="text-right">
                                         <Button type="reset" size="md" color="secondary">
                                             <FontAwesomeIcon icon="eraser"/>&nbsp;
@@ -152,8 +165,8 @@ class FilterHistorico extends Component {
                                         </Button>
                                     </Col>
                                     <Col xs="6" md="6">
-                                        <Button type="submit" size="md" color="primary">
-                                            <FontAwesomeIcon icon="search"/>&nbsp;
+                                        <Button type="submit" size="md" color="primary" onClick={this.btClick}>
+                                              <FontAwesomeIcon icon="search"/>&nbsp;
                                             Buscar
                                         </Button>
                                     </Col>
@@ -163,6 +176,89 @@ class FilterHistorico extends Component {
                     </Card>
                 </Col>
             </Row>
+            <Row>
+                <Col>
+                    <Card>
+                    <CardHeader>
+                        <FontAwesomeIcon icon="list"/> Resultados de búsqueda
+                    </CardHeader>
+                    <Collapse isOpen={this.state.collapseResulset}>
+                        <CardBody>
+                        <Table hover bordered striped responsive size="sm">
+                            <thead>
+                                <tr>
+                                    <th>Tipo Movimiento</th>
+                                    <th>Nro. Póliza</th>
+                                    <th>Nro. Propuesta</th>
+                                    <th>Nro. Endoso</th>
+                                    <th>Contratante</th>
+                                    <th>Ramo</th>
+                                    <th>Convenio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Póliza</td>
+                                    <td>20302438</td>
+                                    <td>25386</td>
+                                    <td>1</td>
+                                    <td>RUT / Nombre / Razón Social</td>
+                                    <td>06 - Vehículos</td>
+                                    <td>Cod. / Nombre</td>
+                                </tr>
+                                <tr>
+                                    <td>Endoso</td>
+                                    <td>20302438</td>
+                                    <td>23526</td>
+                                    <td>1</td>
+                                    <td>RUT / Nombre / Razón Social</td>
+                                    <td>06 - Vehículos</td>
+                                    <td>Cod. / Nombre</td>
+                                </tr>
+                                <tr>
+                                    <td>Póliza</td>
+                                    <td>20302438</td>
+                                    <td>24567</td>
+                                    <td>1</td>
+                                    <td>RUT / Nombre / Razón Social</td>
+                                    <td>06 - Vehículos</td>
+                                    <td>Cod. / Nombre</td>
+                                </tr>
+                                <tr>
+                                    <td>Endoso</td>
+                                    <td>20302438</td>
+                                    <td>22970</td>
+                                    <td>1</td>
+                                    <td>RUT / Nombre / Razón Social</td>
+                                    <td>06 - Vehículos</td>
+                                    <td>Cod. / Nombre</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        <nav>
+                            <Pagination>
+                            <PaginationItem>
+                                <PaginationLink previous tag="button"></PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem active>
+                                <PaginationLink tag="button">1</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
+                            <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
+                            <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink next tag="button"></PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink tag="button"><FontAwesomeIcon icon="download" /></PaginationLink>
+                            </PaginationItem>
+                            </Pagination>
+                        </nav>
+                        </CardBody>
+                    </Collapse>
+                    </Card>
+                </Col>
+                </Row>
         </div>
     );
   }
