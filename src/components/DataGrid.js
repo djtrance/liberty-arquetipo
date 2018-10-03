@@ -293,9 +293,7 @@ class DataGrid extends Component {
           enableFilter={true}
           toolbar={
             <Toolbar enableFilter={true} filterRowsButtonText="Habilitar Filtros">
-            <p>ghhhghghgh</p>
             </Toolbar>
-
           }
           onAddFilter={this.handleFilterChange}
           onRowSelect={this.onRowSelect}
