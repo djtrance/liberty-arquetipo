@@ -40,19 +40,19 @@ class DefaultSidebar extends Component {
                                 return false;
                             }} >
                             <FontAwesomeIcon icon="briefcase"/>
-                            <span class="ml-10px">Archivos Digitales</span>
+                            <span class="ml-10px">Archivo Digital</span>
                         </a>
                         <ul className={ classNames({ 'pointer without-padding': true,
                                         collapse: this.state.archivoCollapsed
                             })}>
                             <li className="nav-item">
-                                <a  href="#/ArchivosHistoricos"
+                                <a  href="#/ArchivoDigital/Nuevos"
                                     className="sub-option">
-                                    <FontAwesomeIcon icon="list-ol"/> Disponibles
+                                    <FontAwesomeIcon icon="list-ol"/> Nuevos
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a  href="#/ArchivosHistoricos"
+                                <a  href="#/ArchivoDigital/Historicos"
                                     className="sub-option">
                                     <FontAwesomeIcon icon="history"/> Históricos
                                 </a>
